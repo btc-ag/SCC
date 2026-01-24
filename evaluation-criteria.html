@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewertungskriterien - Sovereign Cloud Compass</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Base Styles from SCC -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- SAA Criteria Styles (reuse) -->
+    <link rel="stylesheet" href="../SAA/criteria-styles.css">
+</head>
+<body>
+    <div class="protected-content unlocked">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="header-nav">
+                    <a href="#" class="logo">
+                        <img src="btc-logo.png" alt="BTC AG Logo" class="logo-img">
+                    </a>
+                    <div class="header-actions">
+                        <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode"></div>
+                        <a href="Sovereign_Cloud_Compass.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left"></i> Zurück zum Compass
+                        </a>
+                        <a href="../SAA/Sovereign_Architecture_Advisor.html" class="btn btn-secondary">
+                            Architecture Advisor
+                        </a>
+                        <a href="https://outlook.office.com/book/BTCAGManagedCloudServices@btcag.onmicrosoft.com/s/U1HPjhE9b0qdW-uTHThOSw2?ismsaljsauthenabled" target="_blank" class="btn btn-primary">
+                            Beratung
+                        </a>
+                    </div>
+                </nav>
+                <h1 class="header-title">Bewertungskriterien & Methodik</h1>
+                <p class="header-subtitle">Transparente Darstellung der Cloud-Provider Bewertungen im Sovereign Cloud Compass</p>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="main">
+            <div class="container criteria-page-container">
+
+                <!-- Navigation -->
+                <div class="criteria-nav">
+                    <a href="#uebersicht" class="criteria-nav-link active">Übersicht</a>
+                    <a href="#kontrolle" class="criteria-nav-link">Kontrolle & Souveränität</a>
+                    <a href="#leistung" class="criteria-nav-link">Leistung & Performance</a>
+                    <a href="#provider" class="criteria-nav-link">Provider-Details</a>
+                </div>
+
+                <!-- Übersicht -->
+                <section id="uebersicht" class="criteria-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-info-circle"></i> Wie funktioniert die Bewertung?
+                    </h2>
+
+                    <!-- Experten-Grundlage -->
+                    <div class="intro-card">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-users"></i> Experten-Bewertungen</h3>
+                        <p>
+                            Die Bewertungen basieren auf umfassenden Experten-Einschätzungen der BTC für jeden betrachteten Cloud-Provider.
+                            Alle beteiligten Experten verfügen jeweils über mehr als 10 Jahre Beratungs-, Betriebs- und Service-Erfahrung mit
+                            verschiedenen Cloud-Providern, praktisch nachgewiesene Erfahrung mit mehreren verschiedenen Cloud-Angeboten sowie
+                            geprüfte und vielfach zertifizierte Expertise in Cloud-Beratung und -Architektur.
+                        </p>
+                    </div>
+
+                    <!-- Bewertungskriterien -->
+                    <div class="intro-card" style="margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-clipboard-list"></i> Bewertungskriterien</h3>
+                        <p>
+                            Die betrachteten Dimensionen "Kontrolle" und "Leistungsfähigkeit" wurden anhand von einer Vielzahl von Kriterien bewertet,
+                            wie der Gesellschaftsstruktur, externen Abhängigkeiten (Hardware, Software, Unternehmensstruktur, Rechenzentren, Lizenzen,
+                            Support, Wartung), rechtlicher Souveränität und geopolitischer Resistenz, sowie dem Umfang und Reifegrad der Service-Landschaft,
+                            der Eignung für moderne Cloud-Architekturen, Innovationszyklen, technische und organisatorische Souveränitätskonstrukte sowie
+                            Entwicklerfreundlichkeit und der Ökosystem-Stärke.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            Als initiale Grundlage diente der Sovereign Cloud Benchmark 2025 von cloud ahead,
+                            welcher durch die Experten-Bewertungen, verschiedene Befragungen sowie weitere fundierte Einschätzungen ergänzt wurde.
+                        </p>
+                    </div>
+
+                    <!-- Berechnungsformel -->
+                    <div class="intro-card" style="margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-calculator"></i> Berechnungsmethodik</h3>
+                        <p>
+                            Der Sovereign Cloud Compass bewertet Cloud-Anbieter anhand von zwei Hauptkriterien,
+                            die in einer interaktiven Matrix visualisiert werden. Jeder Provider erhält für jedes Kriterium
+                            einen Score zwischen 0 und 100 Punkten.
+                        </p>
+                        <div class="formula-box">
+                            <h4>Berechnungsformel</h4>
+                            <code class="formula">
+                                Gesamt-Score = (Kontrolle × Gewicht_Kontrolle) + (Leistung × Gewicht_Leistung)
+                            </code>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                                Die Gewichtung wird über den Strategie-Slider gesteuert:
+                            </p>
+                            <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
+                                <li><strong>Maximale Souveränität:</strong> 90% Kontrolle, 10% Leistung</li>
+                                <li><strong>Ausgewogen:</strong> 50% Kontrolle, 50% Leistung</li>
+                                <li><strong>Performance First:</strong> 10% Kontrolle, 90% Leistung</li>
+                            </ul>
+                        </div>
+                        <p class="note">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <strong>Wichtig:</strong> Die Gewichtung kann über den Strategie-Slider im Compass angepasst werden,
+                            um verschiedene Cloud-Strategien abzubilden. Die Scores können auf dieser Seite editiert werden.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Kontrolle & Souveränität -->
+                <section id="kontrolle" class="criteria-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-lock"></i> Kontrolle & Souveränität
+                    </h2>
+                    <div class="criteria-card">
+                        <div class="criteria-intro">
+                            <p>
+                                Bewertet die Datensouveränität und rechtliche Kontrolle über Ihre Infrastruktur.
+                                Dieser Score basiert auf der Analyse von Jurisdiktion, DSGVO-Konformität, Vendor Lock-in Risiko,
+                                Eigentümerstruktur und Transparenz.
+                            </p>
+                        </div>
+
+                        <h3><i class="fa-solid fa-list-check"></i> Bewertungsfaktoren</h3>
+                        <div class="factors-grid">
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #5A67D8;">
+                                    <i class="fa-solid fa-gavel"></i>
+                                </div>
+                                <h4>Jurisdiktion & Rechtsraum</h4>
+                                <p>In welchem Rechtsraum operiert der Anbieter?</p>
+                                <ul>
+                                    <li><strong>Deutschland:</strong> Höchste Kontrolle (85-100 Punkte)</li>
+                                    <li><strong>EU:</strong> Hohe Kontrolle, DSGVO-konform (55-90 Punkte)</li>
+                                    <li><strong>Souveräne EU-Cloud:</strong> Europäische Souveränität (80-85 Punkte)</li>
+                                    <li><strong>USA/Global:</strong> Eingeschränkte Kontrolle (40-42 Punkte)</li>
+                                    <li><strong>Private Cloud:</strong> Maximale Kontrolle (85-100 Punkte)</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #10B981;">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h4>DSGVO & Datenschutz</h4>
+                                <p>Einhaltung europäischer Datenschutzstandards</p>
+                                <ul>
+                                    <li><strong>Native DSGVO:</strong> Provider in EU/Deutschland</li>
+                                    <li><strong>DSGVO-zertifiziert:</strong> US-Provider mit EU-Garantien</li>
+                                    <li><strong>Private Cloud:</strong> Vollständige Kontrolle über Datenschutz</li>
+                                    <li><strong>Souveräne Clouds:</strong> Erweiterte Souveränitätsgarantien</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #F59E0B;">
+                                    <i class="fa-solid fa-lock-open"></i>
+                                </div>
+                                <h4>Vendor Lock-in Risiko</h4>
+                                <p>Wie einfach ist ein Anbieterwechsel?</p>
+                                <ul>
+                                    <li><strong>Open Source:</strong> OpenStack, volle Portabilität</li>
+                                    <li><strong>Standard-APIs:</strong> Kompatible Schnittstellen</li>
+                                    <li><strong>Hybrid:</strong> Mix aus proprietary und standard</li>
+                                    <li><strong>Proprietary:</strong> Proprietäre Services (Hyperscaler)</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #8B5CF6;">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <h4>Eigentümerstruktur</h4>
+                                <p>Wem gehört der Cloud-Provider?</p>
+                                <ul>
+                                    <li><strong>Deutsche Eigentümer:</strong> STACKIT, IONOS</li>
+                                    <li><strong>EU-Eigentümer:</strong> OVH, plusserver</li>
+                                    <li><strong>US-Konzern mit EU-Garantien:</strong> DELOS, AWS ESC</li>
+                                    <li><strong>US-Konzern:</strong> AWS, Azure, GCP, Oracle</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #EC4899;">
+                                    <i class="fa-solid fa-server"></i>
+                                </div>
+                                <h4>Infrastruktur-Standort</h4>
+                                <p>Wo werden die Daten gespeichert?</p>
+                                <ul>
+                                    <li><strong>Deutschland:</strong> RZs in Deutschland</li>
+                                    <li><strong>EU:</strong> RZs innerhalb der EU</li>
+                                    <li><strong>On-Premises:</strong> Im eigenen Rechenzentrum</li>
+                                    <li><strong>Global:</strong> Weltweite Rechenzentren</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #06B6D4;">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <h4>Transparenz & Zugriffe</h4>
+                                <p>Offenheit über Datenverarbeitung</p>
+                                <ul>
+                                    <li><strong>Volle Transparenz:</strong> Open Source, eigene Kontrolle</li>
+                                    <li><strong>EU-Garantien:</strong> Souveräne Clouds mit Transparenz</li>
+                                    <li><strong>Standard-Reporting:</strong> Basis-Transparenz</li>
+                                    <li><strong>Limited:</strong> Eingeschränkte Einblicke</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3><i class="fa-solid fa-chart-line"></i> Provider-Scores im Detail</h3>
+                        <div id="controlScoresTable"></div>
+                    </div>
+                </section>
+
+                <!-- Leistung & Performance -->
+                <section id="leistung" class="criteria-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-bolt"></i> Leistung & Performance
+                    </h2>
+                    <div class="criteria-card">
+                        <div class="criteria-intro">
+                            <p>
+                                Misst die technische Leistungsfähigkeit, Service-Portfolio und Innovation des Anbieters.
+                                Dieser Score basiert auf der Analyse von Service-Umfang, Reife, Skalierbarkeit und Innovation.
+                            </p>
+                        </div>
+
+                        <h3><i class="fa-solid fa-list-check"></i> Bewertungsfaktoren</h3>
+                        <div class="factors-grid">
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #F59E0B;">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <h4>Service-Portfolio Umfang</h4>
+                                <p>Anzahl und Vielfalt der Services</p>
+                                <ul>
+                                    <li><strong>Hyperscaler:</strong> 200+ Services (90-95 Punkte)</li>
+                                    <li><strong>Souveräne Clouds:</strong> 100+ Services (65-90 Punkte)</li>
+                                    <li><strong>EU-Provider:</strong> 50-100 Services (55-75 Punkte)</li>
+                                    <li><strong>Hybrid:</strong> 40-80 Services (60-70 Punkte)</li>
+                                    <li><strong>Private Cloud:</strong> Basis-Services (20-35 Punkte)</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #10B981;">
+                                    <i class="fa-solid fa-check-circle"></i>
+                                </div>
+                                <h4>Service-Reife (Maturity)</h4>
+                                <p>GA vs. Preview/Beta Services</p>
+                                <ul>
+                                    <li><strong>Hyperscaler:</strong> Sehr reifes Portfolio</li>
+                                    <li><strong>Souveräne Clouds:</strong> Reifes Portfolio, neue Services</li>
+                                    <li><strong>EU-Provider:</strong> Solides Portfolio, wachsend</li>
+                                    <li><strong>Private Cloud:</strong> Bewährt, aber eingeschränkt</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #8B5CF6;">
+                                    <i class="fa-solid fa-arrow-up-right-dots"></i>
+                                </div>
+                                <h4>Skalierbarkeit & Verfügbarkeit</h4>
+                                <p>Auto-Scaling, globale Verfügbarkeit</p>
+                                <ul>
+                                    <li><strong>Global:</strong> Mehrere Regionen weltweit (Hyperscaler)</li>
+                                    <li><strong>Multi-Regional:</strong> Mehrere EU-Regionen</li>
+                                    <li><strong>Regional:</strong> Deutschland/EU</li>
+                                    <li><strong>Lokal:</strong> Einzelner Standort/On-Prem</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #EF4444;">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <h4>Innovation & KI/ML</h4>
+                                <p>Moderne Cloud-native Tools</p>
+                                <ul>
+                                    <li><strong>Führend:</strong> Eigene KI/ML-Services (Hyperscaler)</li>
+                                    <li><strong>Fortgeschritten:</strong> KI-Integration verfügbar</li>
+                                    <li><strong>Standard:</strong> Basis KI-Services</li>
+                                    <li><strong>Limited:</strong> Eingeschränkte KI-Angebote</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #06B6D4;">
+                                    <i class="fa-solid fa-puzzle-piece"></i>
+                                </div>
+                                <h4>Ökosystem & Integration</h4>
+                                <p>Partner, Marketplace, Tools</p>
+                                <ul>
+                                    <li><strong>Umfangreich:</strong> Großer Marketplace (Hyperscaler)</li>
+                                    <li><strong>Solide:</strong> Partner-Integration vorhanden</li>
+                                    <li><strong>Wachsend:</strong> Aufbauendes Ökosystem</li>
+                                    <li><strong>Begrenzt:</strong> Basis-Integration</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #F59E0B;">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </div>
+                                <h4>Performance & Latenz</h4>
+                                <p>Geschwindigkeit und Netzwerkqualität</p>
+                                <ul>
+                                    <li><strong>Exzellent:</strong> Globales Premium-Netzwerk</li>
+                                    <li><strong>Sehr gut:</strong> Regionales High-Performance-Netz</li>
+                                    <li><strong>Gut:</strong> Solide Performance</li>
+                                    <li><strong>Standard:</strong> Basis-Performance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3><i class="fa-solid fa-chart-line"></i> Provider-Scores im Detail</h3>
+                        <div id="performanceScoresTable"></div>
+                    </div>
+                </section>
+
+                <!-- Provider-Details -->
+                <section id="provider" class="criteria-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-cloud"></i> Cloud-Provider im Detail
+                    </h2>
+                    <div class="criteria-card">
+                        <p>
+                            Detaillierte Übersicht aller bewerteten Cloud-Provider mit ihren Scores und Kategorien.
+                            Die Werte können hier angepasst werden und wirken sich direkt auf die Compass-Analyse aus.
+                        </p>
+                        <div id="providerDetailsTable"></div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <img src="btc-logo.png" alt="BTC AG Logo" class="footer-logo">
+                <p class="footer-text">
+                    Ihr Partner für souveräne Cloud-Transformation |
+                    <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- Edit Provider Modal -->
+        <div class="edit-modal-overlay" id="editModalOverlay">
+            <div class="edit-modal">
+                <div class="edit-modal-header">
+                    <h3 id="editModalTitle">Provider bearbeiten</h3>
+                    <button class="edit-modal-close" onclick="sccCriteriaPage.closeEditModal()">&times;</button>
+                </div>
+                <div class="edit-modal-content" id="editModalContent">
+                    <!-- Dynamisch gefüllt -->
+                </div>
+                <div class="edit-modal-footer">
+                    <button class="btn-secondary" onclick="sccCriteriaPage.closeEditModal()">Abbrechen</button>
+                    <button class="btn-primary" onclick="sccCriteriaPage.saveProviderScores()">Speichern</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Back Button -->
+        <div class="floating-back-btn">
+            <a href="Sovereign_Cloud_Compass.html" title="Zurück zum Compass">
+                <i class="fa-solid fa-arrow-left"></i> Zurück zum Compass
+            </a>
+        </div>
+
+        <!-- Floating Reset Button -->
+        <div class="floating-reset-btn" id="floatingResetBtn" style="display: none;">
+            <button onclick="sccCriteriaPage.showResetConfirmation()" title="Alle Änderungen zurücksetzen">
+                <i class="fa-solid fa-rotate-left"></i> Zurück zum Standard
+            </button>
+        </div>
+
+        <!-- Reset Confirmation Modal -->
+        <div class="confirmation-modal-overlay" id="resetConfirmationOverlay">
+            <div class="confirmation-modal">
+                <div class="confirmation-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3>Alle Änderungen zurücksetzen?</h3>
+                <p>Alle individuellen Anpassungen an den Provider-Scores werden auf die Standard-Werte zurückgesetzt.</p>
+                <div class="confirmation-actions">
+                    <button class="btn-secondary" onclick="sccCriteriaPage.closeResetConfirmation()">Abbrechen</button>
+                    <button class="btn-danger" onclick="sccCriteriaPage.confirmReset()">Zurücksetzen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Management -->
+    <script>
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        initTheme();
+    </script>
+
+    <!-- SCC Criteria Page Logic -->
+    <script src="scc-criteria-page.js"></script>
+</body>
+</html>
