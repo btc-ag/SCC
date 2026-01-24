@@ -93,14 +93,14 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 
 ### Lokale Nutzung
 1. Repository klonen oder ZIP entpacken
-2. `Sovereign_Cloud_Compass.html` im Browser öffnen für das Haupt-Tool
+2. `index.html` im Browser öffnen für das Haupt-Tool
 3. Optional: `evaluation-criteria.html` öffnen für die Bewertungskriterien-Dokumentation
 4. Fertig!
 
 ### Dateistruktur
 ```
 SCC/
-├── Sovereign_Cloud_Compass.html      # Haupt-HTML (Compass)
+├── index.html                        # Haupt-HTML (Compass)
 ├── evaluation-criteria.html          # Bewertungskriterien-Seite
 ├── scc-criteria-page.js              # Bewertungskriterien-Logik
 ├── styles.css                        # Haupt-Styling (shared mit SAA)
