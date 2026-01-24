@@ -162,7 +162,7 @@ Die Bewertungen basieren auf:
 ## Erweiterung
 
 ### Neue Anbieter hinzufügen
-Im JavaScript-Bereich von `Sovereign_Cloud_Compass.html` unter `baseFullProviders` einen neuen Eintrag anlegen:
+Im JavaScript-Bereich von `index.html` unter `baseFullProviders` einen neuen Eintrag anlegen:
 
 ```javascript
 {
