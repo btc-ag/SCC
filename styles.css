@@ -344,30 +344,20 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* Login Footer */
-.login-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
+/* Login Page Footer */
+.login-page-footer {
     margin-top: 2rem;
-    padding-top: 1rem;
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
+    padding: 2rem 0;
+    background: transparent;
+    border-top: none;
 }
 
-.login-footer-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s ease;
+.login-page-footer .footer-logo {
+    height: 40px;
 }
 
-.login-footer-link:hover {
-    color: var(--btc-primary);
-}
-
-.login-footer-version {
-    opacity: 0.6;
+.login-page-footer .footer-text {
+    font-size: 0.9rem;
 }
 
 /* Protected Content */
