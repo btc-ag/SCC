@@ -344,6 +344,32 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
+/* Login Footer */
+.login-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.login-footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-footer-link:hover {
+    color: var(--btc-primary);
+}
+
+.login-footer-version {
+    opacity: 0.6;
+}
+
 /* Protected Content */
 .protected-content {
     display: none;
