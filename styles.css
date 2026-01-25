@@ -1884,6 +1884,12 @@ body {
    CRITERIA PAGE MOBILE OPTIMIZATIONS
    ============================================ */
 
+/* Override z-index for floating buttons (from external criteria-styles.css) */
+.floating-back-btn,
+.floating-reset-btn {
+    z-index: 900 !important;
+}
+
 /* Floating Buttons Mobile Optimization */
 @media (max-width: 992px) {
     .floating-back-btn,
