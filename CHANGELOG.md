@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Mobile Criteria Navigation**: Tab-based navigation (tablet) and dropdown selector (phone) for criteria page sections
 - **Scroll Spy**: Automatic navigation state updates based on scroll position
 - **Safe Area Support**: Proper padding for iPhone notch and home indicator
+- **Login Page Footer**: Standard footer with Impressum link and version number on login page
 - **Impressum Link**: Added legal notice link to criteria page footer
 
 ### Changed
@@ -20,11 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dark Mode toggle moved to drawer header for better accessibility
 - Improved touch targets (min. 44px) for mobile usability
 - Enhanced responsive breakpoints (992px, 768px, 480px)
+- Login page now uses consistent footer layout with main pages
 
 ### Technical
 - Added Font Awesome 6.5.1 for menu icons
 - Implemented keyboard navigation (Escape to close menu)
 - Auto-close drawer on window resize to desktop
+- Flexbox column layout for login overlay with footer positioning
 
 ## [2.0.1] - 2026-01-24
 
