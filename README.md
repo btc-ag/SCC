@@ -10,8 +10,9 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 - **Transparente Bewertung**: Detaillierte Dokumentation der Bewertungskriterien und Scoring-Methodik
 - **Public & Full Access Modus**: Anonymisierte Ansicht für öffentliche Nutzung oder Vollzugriff mit Anbieter-Namen
 - **Editierbare Scores**: Bewertungen können individuell angepasst werden
-- **Responsive Design**: Optimiert für Desktop und Tablet
+- **Responsive Design**: Optimiert für Desktop, Tablet und Mobile mit Burger-Menü
 - **Dark Mode**: Vollständige Unterstützung für helle und dunkle Darstellung
+- **Mobile Navigation**: Modernes Slide-out Menü mit Touch-optimierter Bedienung
 
 ## Unterstützte Cloud-Anbieter
 
@@ -80,10 +81,12 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 ## Tech Stack
 
 - **Frontend**: Vanilla JavaScript (ES6+)
-- **Styling**: CSS3 mit CSS Custom Properties
+- **Styling**: CSS3 mit CSS Custom Properties und Glass-Morphism Design
+- **Icons**: Font Awesome 6.5
 - **Architektur**: Single-Page Application ohne Build-Prozess
 - **Authentifizierung**: Client-seitige SHA-256-Hash-Validierung
 - **Persistenz**: LocalStorage für Custom Scores und Theme-Präferenzen
+- **Mobile**: Responsive Design mit Safe-Area-Support für moderne Smartphones
 
 ## Setup
 
