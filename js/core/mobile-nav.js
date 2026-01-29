@@ -15,7 +15,8 @@
     const ELEMENTS = Object.freeze({
         DRAWER: 'mobileNavDrawer',
         OVERLAY: 'mobileNavOverlay',
-        TOGGLE: 'burgerMenuToggle'
+        TOGGLE: 'burgerMenuToggle',
+        CLOSE: 'drawerClose'
     });
 
     /**
@@ -91,6 +92,29 @@
      * Initialisiert Event-Listener
      */
     function init() {
+        // Burger-Toggle Button
+        const toggleBtn = document.getElementById(ELEMENTS.TOGGLE);
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', toggle);
+        }
+
+        // Overlay (Klick außerhalb schließt)
+        const overlay = document.getElementById(ELEMENTS.OVERLAY);
+        if (overlay) {
+            overlay.addEventListener('click', close);
+        }
+
+        // Close-Button im Drawer
+        const closeBtn = document.getElementById(ELEMENTS.CLOSE);
+        if (closeBtn) {
+            closeBtn.addEventListener('click', close);
+        }
+
+        // Interne Links im Drawer schließen die Navigation
+        document.querySelectorAll('.drawer-internal-link').forEach(link => {
+            link.addEventListener('click', close);
+        });
+
         // Escape-Taste schließt Navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {

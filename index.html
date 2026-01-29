@@ -131,7 +131,7 @@
     <!-- Password Overlay -->
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-container">
-            <div class="login-theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode"></div>
+            <div class="login-theme-toggle" id="loginThemeToggle" role="button" tabindex="0" aria-label="Toggle dark mode"></div>
             <img src="btc-logo.png" alt="BTC AG - Sovereign Cloud Compass" class="login-logo" width="180" height="45">
             <h2>Sovereign Cloud Compass</h2>
             <p class="subtitle">Wählen Sie Ihren Zugriffsmodus</p>
@@ -140,7 +140,7 @@
             <div class="public-access-primary">
                 <h3 class="access-title">Public Mode</h3>
                 <p class="access-description">Nutzen Sie das Tool mit anonymisierten Anbietern</p>
-                <button class="public-button" onclick="skipPassword()">
+                <button class="public-button" id="publicButton">
                     Ohne Passwort starten
                 </button>
             </div>
@@ -162,7 +162,7 @@
                         placeholder="Passwort eingeben..."
                         autocomplete="off"
                     >
-                    <button type="submit" class="password-button" onclick="checkPassword()">
+                    <button type="submit" class="password-button" id="passwordButton">
                         Zugriff erhalten
                     </button>
                     <div class="password-error" id="passwordError">
@@ -186,21 +186,21 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.3.1</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.4.0</span>
             </div>
         </footer>
     </div>
 
     <!-- Mobile Navigation Overlay -->
-    <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <!-- Mobile Navigation Drawer -->
     <nav class="mobile-nav-drawer" id="mobileNavDrawer">
         <div class="drawer-header">
             <img src="btc-logo.png" alt="BTC AG" class="drawer-logo" width="140" height="35">
             <div class="drawer-header-actions">
-                <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode"></div>
-                <button class="drawer-close" onclick="closeMobileNav()" aria-label="Menü schließen">
+                <div class="theme-toggle" id="drawerThemeToggle" role="button" tabindex="0" aria-label="Toggle dark mode"></div>
+                <button class="drawer-close" id="drawerClose" aria-label="Menü schließen">
                     &times;
                 </button>
             </div>
@@ -244,7 +244,7 @@
                     <div class="header-actions">
                         <!-- Desktop Navigation -->
                         <div class="desktop-nav">
-                            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode"></div>
+                            <div class="theme-toggle" id="desktopThemeToggle" role="button" tabindex="0" aria-label="Toggle dark mode"></div>
                             <a href="https://btc-ag.github.io/SAA/" class="btn btn-secondary">
                                 Architecture Advisor
                             </a>
@@ -256,7 +256,7 @@
                             </a>
                         </div>
                         <!-- Mobile Burger Menu Toggle -->
-                        <button class="burger-menu-toggle" id="burgerMenuToggle" onclick="toggleMobileNav()" aria-label="Menü öffnen">
+                        <button class="burger-menu-toggle" id="burgerMenuToggle" aria-label="Menü öffnen">
                             <span class="burger-icon">
                                 <span class="burger-line"></span>
                                 <span class="burger-line"></span>
@@ -265,7 +265,7 @@
                         </button>
                     </div>
                 </nav>
-                <div class="access-mode-badge" id="accessBadge" onclick="logout()" role="button" tabindex="0" title="Klicken zum Abmelden" style="cursor: pointer;">
+                <div class="access-mode-badge" id="accessBadge" role="button" tabindex="0" title="Klicken zum Abmelden" style="cursor: pointer;">
                     Public Access - Anonymisierte Ansicht
                 </div>
                 <h1 class="header-title">Sovereign Cloud Compass</h1>
@@ -439,7 +439,7 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.3.1</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.4.0</span>
             </div>
         </footer>
     </div>

@@ -59,6 +59,12 @@
         elements.accessBadge = document.getElementById('accessBadge');
         elements.passwordInput = document.getElementById('passwordInput');
         elements.passwordError = document.getElementById('passwordError');
+        // Event-Handler Elemente
+        elements.loginThemeToggle = document.getElementById('loginThemeToggle');
+        elements.publicButton = document.getElementById('publicButton');
+        elements.passwordButton = document.getElementById('passwordButton');
+        elements.drawerThemeToggle = document.getElementById('drawerThemeToggle');
+        elements.desktopThemeToggle = document.getElementById('desktopThemeToggle');
     }
 
     /**
@@ -351,7 +357,7 @@
             });
         }
 
-        // Passwort-Eingabe
+        // Passwort-Eingabe (Enter-Taste)
         if (elements.passwordInput) {
             elements.passwordInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') checkPassword();
@@ -365,8 +371,54 @@
             }
         });
 
-        // Access-Badge Keyboard-Support
+        // === Login-Bereich ===
+        // Theme-Toggle auf Login-Seite
+        if (elements.loginThemeToggle) {
+            elements.loginThemeToggle.addEventListener('click', () => ThemeManager.toggle());
+            elements.loginThemeToggle.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    ThemeManager.toggle();
+                }
+            });
+        }
+
+        // Public-Button (Ohne Passwort starten)
+        if (elements.publicButton) {
+            elements.publicButton.addEventListener('click', skipPassword);
+        }
+
+        // Passwort-Button
+        if (elements.passwordButton) {
+            elements.passwordButton.addEventListener('click', checkPassword);
+        }
+
+        // === Geschützter Bereich ===
+        // Theme-Toggle im Drawer
+        if (elements.drawerThemeToggle) {
+            elements.drawerThemeToggle.addEventListener('click', () => ThemeManager.toggle());
+            elements.drawerThemeToggle.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    ThemeManager.toggle();
+                }
+            });
+        }
+
+        // Theme-Toggle Desktop
+        if (elements.desktopThemeToggle) {
+            elements.desktopThemeToggle.addEventListener('click', () => ThemeManager.toggle());
+            elements.desktopThemeToggle.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    ThemeManager.toggle();
+                }
+            });
+        }
+
+        // Access-Badge (Logout)
         if (elements.accessBadge) {
+            elements.accessBadge.addEventListener('click', logout);
             elements.accessBadge.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();

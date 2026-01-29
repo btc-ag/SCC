@@ -5,6 +5,54 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-01-29
+
+### Changed
+- **Event-Handler Modernisierung**: Alle inline `onclick` Handler zu `addEventListener` migriert
+- **Keyboard-Accessibility**: Enter/Space Support für alle interaktiven Elemente hinzugefügt
+- **Tabellen-Rendering refactored**: Helper-Methoden für DRY-Prinzip (`renderProviderNameCell`, `renderScoreCell`, `renderCategoryBadge`, `renderEditButton`)
+- **Input-Validierung**: Score-Werte werden auf Bereich 0-100 validiert und begrenzt
+
+### Technical
+- Inline Event-Handler aus HTML entfernt (24 onclick Handler)
+- Event-Binding via `data-provider-id` Attribute statt globaler Funktionen
+- `validateScore()` und `validateCustomScores()` für robuste Datenvalidierung
+- Slider `oninput` Handler programmatisch gebunden
+- Duplizierten Code in evaluation-criteria.html entfernt (~60 Zeilen)
+
+### Fixed
+- Mobile Navigation Event-Handler funktionieren jetzt korrekt
+- Theme-Toggles reagieren auf Keyboard-Events (Accessibility)
+
+## [2.3.1] - 2026-01-29
+
+### Changed
+- **Image Optimization**: Kontextspezifische Alt-Texte für alle Bilder
+- **Layout Stability**: Width/Height Attribute zur Vermeidung von CLS (Cumulative Layout Shift)
+- **Performance**: Lazy Loading für Footer-Logos hinzugefügt
+
+## [2.3.0] - 2026-01-29
+
+### Added
+- **SEO Meta Tags**: Description, Keywords, Author, Robots
+- **Open Graph**: Facebook/LinkedIn Sharing-Optimierung
+- **Twitter Cards**: Twitter Sharing-Optimierung
+- **Schema.org**: Strukturierte Daten (WebApplication, Organization, BreadcrumbList)
+- **Critical CSS**: Above-the-fold Styles inline für schnelleres Rendering
+- **Skip-Links**: Accessibility-Verbesserung für Screenreader
+- **sitemap.xml**: Sitemap für Suchmaschinen
+- **robots.txt**: Crawler-Anweisungen
+
+### Changed
+- Font Awesome async geladen für bessere Performance
+
+## [2.2.0] - 2026-01-29
+
+### Added
+- Initiale SEO-Grundlagen implementiert
+- Canonical URLs hinzugefügt
+- Preconnect für CDN-Performance
+
 ## [2.1.0] - 2026-01-25
 
 ### Added
@@ -104,6 +152,10 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **2.4.0** (2026-01-29) - Code-Modernisierung: Event-Handler, Tabellen-Refactoring, Input-Validierung
+- **2.3.1** (2026-01-29) - Image Optimization: Alt-Texte, Width/Height, Lazy Loading
+- **2.3.0** (2026-01-29) - SEO: Meta Tags, Open Graph, Schema.org, Critical CSS
+- **2.2.0** (2026-01-29) - SEO-Grundlagen und Canonical URLs
 - **2.1.0** (2026-01-25) - Mobile optimization with burger menu navigation
 - **2.0.1** (2026-01-24) - Added changelog and version tracking
 - **2.0.0** (2026-01-23) - GitHub Pages optimization and documentation updates
