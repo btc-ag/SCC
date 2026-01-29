@@ -3,17 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bewertungskriterien - Sovereign Cloud Compass</title>
-    <!-- Favicon -->
+
+    <!-- SEO Meta Tags -->
+    <title>Bewertungskriterien & Methodik - Sovereign Cloud Compass | BTC AG</title>
+    <meta name="description" content="Transparente Darstellung der Bewertungskriterien für Cloud-Provider. Erfahren Sie, wie wir Kontrolle, Souveränität und Leistungsfähigkeit von AWS, Azure, STACKIT und anderen bewerten.">
+    <meta name="keywords" content="Cloud Bewertungskriterien, Cloud Provider Vergleich, DSGVO Konformität, Cloud Souveränität Methodik, Cloud Compliance">
+    <meta name="author" content="BTC AG">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://btc-ag.github.io/SCC/evaluation-criteria.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://btc-ag.github.io/SCC/evaluation-criteria.html">
+    <meta property="og:title" content="Bewertungskriterien für Cloud-Provider - Sovereign Cloud Compass">
+    <meta property="og:description" content="Transparente Methodik zur Bewertung von Cloud-Anbietern nach Kontrolle, Souveränität und Leistungsfähigkeit.">
+    <meta property="og:image" content="https://btc-ag.github.io/SCC/btc-logo.png">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="BTC AG Cloud Solutions">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://btc-ag.github.io/SCC/evaluation-criteria.html">
+    <meta name="twitter:title" content="Bewertungskriterien - Sovereign Cloud Compass">
+    <meta name="twitter:description" content="So bewerten wir Cloud-Provider nach Souveränität und Leistung.">
+    <meta name="twitter:image" content="https://btc-ag.github.io/SCC/btc-logo.png">
+
+    <!-- Favicon & Theme -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#5AA6E7">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Critical CSS (Above-the-fold styles) -->
+    <style>
+        :root{--btc-primary:#5AA6E7;--btc-heading:#1a1a2e;--text-primary:#1d1d1f;--text-secondary:#6e6e73;--bg-primary:#ffffff;--bg-secondary:#f5f5f7;--border-color:#d2d2d7}
+        [data-theme="dark"]{--btc-heading:#ffffff;--text-primary:#f5f5f7;--text-secondary:#98989d;--bg-primary:#1d1d1f;--bg-secondary:#2d2d2d;--border-color:#424245}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.5}
+        .skip-link{position:absolute;top:-50px;left:0;background:var(--btc-primary);color:#fff;padding:0.75rem 1.5rem;text-decoration:none;z-index:100000;font-weight:600;border-radius:0 0 8px 0;transition:top 0.3s}
+        .skip-link:focus{top:0;outline:3px solid var(--btc-primary);outline-offset:2px}
+        .header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:2rem 0 3rem;text-align:center}
+        .container{max-width:1400px;margin:0 auto;padding:0 1.5rem}
+        .header-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;margin-bottom:0.5rem}
+    </style>
+
+    <!-- Font Awesome (async loading for performance) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <!-- Base Styles from SCC -->
     <link rel="stylesheet" href="styles.css">
     <!-- SAA Criteria Styles (reuse) -->
     <link rel="stylesheet" href="https://btc-ag.github.io/SAA/criteria-styles.css">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Bewertungskriterien & Methodik - Sovereign Cloud Compass",
+      "description": "Transparente Darstellung der Methodik zur Bewertung von Cloud-Anbietern nach Kontrolle, Souveränität und Leistungsfähigkeit.",
+      "author": {
+        "@type": "Organization",
+        "name": "BTC AG",
+        "url": "https://www.btc-ag.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "BTC AG",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://btc-ag.github.io/SCC/btc-logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://btc-ag.github.io/SCC/evaluation-criteria.html"
+      }
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
 
@@ -103,7 +178,7 @@
         </header>
 
         <!-- Main -->
-        <main class="main">
+        <main class="main" id="main-content" role="main" aria-label="Hauptinhalt">
             <div class="container criteria-page-container">
 
                 <!-- Desktop Navigation -->
