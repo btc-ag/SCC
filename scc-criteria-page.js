@@ -1,44 +1,16 @@
 /**
  * SCC Bewertungskriterien Page Logic
  * Zeigt globale Provider-Bewertungen für Sovereign Cloud Compass
+ *
+ * @fileoverview Criteria Page Controller
+ * @module scc-criteria-page
+ * @requires js/data/providers.js
  */
-
-// Cloud Provider Data (von SCC)
-// IDs sind lowercase mit bindestrichen statt leerzeichen
-const sccProviders = [
-    { id: 'aws', name: 'AWS', control: 42, performance: 95, color: '#ef4444', category: 'hyperscaler',
-      description: 'Umfangreichstes Portfolio an Infrastruktur- und Plattform-Services mit exzellenter Developer Experience.' },
-    { id: 'microsoft-azure', name: 'Microsoft Azure', control: 42, performance: 95, color: '#ef4444', category: 'hyperscaler',
-      description: 'Leistungsfähiges Cloud-Ökosystem mit umfangreichem IaaS/PaaS-Portfolio und größter Partner-Landschaft.' },
-    { id: 'google-cloud', name: 'Google Cloud', control: 42, performance: 95, color: '#ef4444', category: 'hyperscaler',
-      description: 'Überzeugend bei Container-Management, KI-Services und Workplace-Lösungen.' },
-    { id: 'oracle-cloud', name: 'Oracle Cloud', control: 40, performance: 70, color: '#ef4444', category: 'hyperscaler',
-      description: 'Besondere Stärken im Datenbank-Bereich mit umfangreichen Sicherheits- und Compliance-Möglichkeiten.' },
-    { id: 'aws-european-sovereign-cloud', name: 'AWS European Sovereign Cloud', control: 80, performance: 90, color: '#3b82f6', category: 'sovereign',
-      description: 'Auf hohe Überlebensfähigkeit in geopolitischen Krisen ausgerichtet mit voller europäischer Souveränität.' },
-    { id: 'microsoft-delos-cloud', name: 'Microsoft DELOS Cloud', control: 85, performance: 65, color: '#3b82f6', category: 'sovereign',
-      description: 'Speziell für deutsche Verwaltung mit vollständiger Datenhoheit ohne US-Zugriffsmöglichkeiten.' },
-    { id: 'stackit', name: 'STACKIT', control: 90, performance: 75, color: '#10b981', category: 'eu',
-      description: 'Cloud-Lösung der Schwarz Gruppe mit Fokus auf deutsche Mittelständler.' },
-    { id: 'ionos-cloud', name: 'IONOS Cloud', control: 65, performance: 65, color: '#10b981', category: 'eu',
-      description: 'Größter deutscher Cloud-Anbieter mit DSGVO-konformer Infrastruktur.' },
-    { id: 'open-telekom-cloud', name: 'Open Telekom Cloud', control: 55, performance: 55, color: '#10b981', category: 'eu',
-      description: 'Deutsche Telekom Cloud basierend auf OpenStack für regulierte Branchen.' },
-    { id: 'openstack-private-cloud', name: 'OpenStack Private Cloud', control: 100, performance: 35, color: '#8b5cf6', category: 'private',
-      description: 'Open-Source Private Cloud mit voller Transparenz und ohne Vendor-Lock-in.' },
-    { id: 'vmware-private-cloud', name: 'VMware Private Cloud', control: 85, performance: 20, color: '#8b5cf6', category: 'private',
-      description: 'Bewährte Enterprise-Virtualisierung mit voller Kontrolle.' },
-    { id: 'google-dedicated-cloud', name: 'Google Dedicated Cloud', control: 85, performance: 70, color: '#f59e0b', category: 'hybrid',
-      description: 'Vollständig isolierte Google Cloud ohne Internetverbindung für höchste Sicherheit.' },
-    { id: 'azure-stack-hci', name: 'Azure Stack HCI', control: 55, performance: 60, color: '#f59e0b', category: 'hybrid',
-      description: 'Hybrid-Cloud-Lösung mit Azure-Services on-premises.' },
-    { id: 'aws-outpost', name: 'AWS Outpost', control: 50, performance: 65, color: '#f59e0b', category: 'hybrid',
-      description: 'AWS-Services in Ihrem Rechenzentrum für konsistente Hybrid-Erfahrung.' }
-];
 
 class SCCCriteriaPage {
     constructor() {
-        this.providers = sccProviders;
+        // Provider-Daten aus zentraler Quelle laden
+        this.providers = window.SCC_DATA ? window.SCC_DATA.BASE_PROVIDERS : [];
         this.customScores = this.loadCustomScores();
         this.editingProvider = null;
         this.init();
@@ -62,8 +34,13 @@ class SCCCriteriaPage {
 
     /**
      * Lädt Custom Scores aus LocalStorage
+     * @returns {Object} Custom Scores
      */
     loadCustomScores() {
+        // Nutze StorageManager wenn verfügbar, sonst Fallback
+        if (window.StorageManager) {
+            return StorageManager.loadCustomScores();
+        }
         try {
             const stored = localStorage.getItem('scc_custom_provider_scores');
             return stored ? JSON.parse(stored) : {};
@@ -77,12 +54,17 @@ class SCCCriteriaPage {
      * Speichert Custom Scores in LocalStorage
      */
     saveCustomScores() {
-        try {
-            localStorage.setItem('scc_custom_provider_scores', JSON.stringify(this.customScores));
-            this.updateResetButtonVisibility();
-        } catch (e) {
-            console.error('Error saving custom scores:', e);
+        // Nutze StorageManager wenn verfügbar, sonst Fallback
+        if (window.StorageManager) {
+            StorageManager.saveCustomScores(this.customScores);
+        } else {
+            try {
+                localStorage.setItem('scc_custom_provider_scores', JSON.stringify(this.customScores));
+            } catch (e) {
+                console.error('Error saving custom scores:', e);
+            }
         }
+        this.updateResetButtonVisibility();
     }
 
     /**
