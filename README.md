@@ -158,7 +158,7 @@ Die Bewertungen basieren auf:
 - Sovereign Cloud Benchmark 2025 von cloud ahead
 - Öffentlich verfügbaren Dokumentationen der Cloud-Anbieter
 - Eigenen Recherchen und Praxiserfahrungen
-- Stand: Januar 2025
+- Stand: Januar 2026
 
 **Hinweis**: Die Bewertungen sind Experteneinschätzungen und können individuell in der Kriterien-Seite angepasst werden.
 
