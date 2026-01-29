@@ -8,6 +8,9 @@
 (function() {
     'use strict';
 
+    // SEAL-Daten aus SCC_DATA (wird später geladen)
+    const getSealData = () => window.SCC_DATA || {};
+
     /**
      * Chart-Konfiguration - eliminiert Magic Numbers
      * @readonly
@@ -98,10 +101,24 @@
         point.style.height = `${size}px`;
         point.style.zIndex = CONFIG.Z_INDEX_BASE - index;
 
-        // Tooltip
+        // Tooltip mit SEAL-Info
         const tooltip = document.createElement('div');
         tooltip.className = 'provider-tooltip';
-        tooltip.textContent = `${provider.name} (Score: ${provider.score.toFixed(1)})`;
+
+        const { getSealLevel } = getSealData();
+        if (getSealLevel) {
+            const seal = getSealLevel(provider.control);
+            tooltip.innerHTML = `
+                <strong>${provider.name}</strong>
+                <span class="tooltip-score">Score: ${provider.score.toFixed(1)}</span>
+                <span class="tooltip-seal seal-color-${seal.level}">
+                    <i class="fa-solid fa-shield-halved"></i> ${seal.shortLabel}
+                </span>
+            `;
+        } else {
+            tooltip.textContent = `${provider.name} (Score: ${provider.score.toFixed(1)})`;
+        }
+
         point.appendChild(tooltip);
 
         return point;
@@ -114,6 +131,39 @@
     function clearPoints(container) {
         if (!container) return;
         container.querySelectorAll('.provider-point').forEach(point => point.remove());
+    }
+
+    /**
+     * Rendert die SEAL-Zonen als Hintergrundbänder
+     * @param {HTMLElement} container - Chart-Container
+     */
+    function renderSealZones(container) {
+        const { SEAL_ZONES, SEAL_LEVELS } = getSealData();
+        if (!SEAL_ZONES) return;
+
+        // Existierende Zonen entfernen
+        container.querySelectorAll('.seal-zone').forEach(z => z.remove());
+
+        const fragment = document.createDocumentFragment();
+
+        SEAL_ZONES.forEach(zone => {
+            const zoneEl = document.createElement('div');
+            zoneEl.className = `seal-zone seal-zone-${zone.level}`;
+            zoneEl.style.top = `${zone.top}%`;
+            zoneEl.style.height = `${zone.height}%`;
+
+            if (zone.label) {
+                const labelEl = document.createElement('span');
+                labelEl.className = 'seal-zone-label';
+                labelEl.textContent = zone.label;
+                zoneEl.appendChild(labelEl);
+            }
+
+            fragment.appendChild(zoneEl);
+        });
+
+        // Am Anfang einfügen (hinter anderen Elementen)
+        container.insertBefore(fragment, container.firstChild);
     }
 
     /**
@@ -133,6 +183,11 @@
 
         // Bestehende Punkte entfernen
         clearPoints(container);
+
+        // SEAL-Zonen rendern (einmalig, falls noch nicht vorhanden)
+        if (!container.querySelector('.seal-zone')) {
+            renderSealZones(container);
+        }
 
         // Neue Punkte erstellen (DocumentFragment für Performance)
         const fragment = document.createDocumentFragment();
