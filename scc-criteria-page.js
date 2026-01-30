@@ -28,6 +28,10 @@ class SCCCriteriaPage {
         this.renderPerformanceScoresTable();
         this.renderProviderDetailsTable();
 
+        // SOV-Sektion rendern
+        this.renderSovCriteriaLegend();
+        this.renderSovProviderSelector();
+
         // Active Link auf Scroll
         this.initScrollSpy();
 
@@ -624,6 +628,129 @@ class SCCCriteriaPage {
         this.updateResetButtonVisibility();
         this.closeResetConfirmation();
         this.showSuccessMessage('Alle Anpassungen wurden zurückgesetzt!');
+    }
+
+    // ========================================
+    // SOV-Sektion Rendering
+    // ========================================
+
+    /**
+     * Rendert die SOV-Kriterien Legende
+     */
+    renderSovCriteriaLegend() {
+        const container = document.getElementById('sovCriteriaGrid');
+        if (!container || !window.SCC_DATA?.SOV_CRITERIA) return;
+
+        const criteria = window.SCC_DATA.SOV_CRITERIA;
+
+        container.innerHTML = Object.values(criteria).map(c => `
+            <div class="sov-criteria-item">
+                <div class="sov-criteria-icon">
+                    <i class="fa-solid ${c.icon}"></i>
+                </div>
+                <div class="sov-criteria-info">
+                    <div class="sov-criteria-name">${c.shortName}: ${c.name}</div>
+                    <div class="sov-criteria-desc">${c.description}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    /**
+     * Rendert die Provider-Auswahl für SOV-Details
+     */
+    renderSovProviderSelector() {
+        const container = document.getElementById('sovProviderSelector');
+        if (!container) return;
+
+        container.innerHTML = this.providers.map(p => {
+            const seal = window.SCC_DATA?.getSealLevel?.(p.control);
+            return `
+                <button class="sov-provider-btn" data-provider-id="${p.id}" style="border-color: ${p.color}">
+                    <span class="sov-provider-btn-name">${p.name}</span>
+                    ${seal ? `<span class="seal-badge seal-badge-${seal.level}" style="font-size: 0.6rem; padding: 0.15rem 0.35rem;">${seal.shortLabel}</span>` : ''}
+                </button>
+            `;
+        }).join('');
+
+        // Event-Listener für Buttons
+        container.querySelectorAll('.sov-provider-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Aktiven Button markieren
+                container.querySelectorAll('.sov-provider-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Details anzeigen
+                this.renderSovProviderDetails(btn.dataset.providerId);
+            });
+        });
+    }
+
+    /**
+     * Rendert die SOV-Details für einen Provider
+     * @param {string} providerId
+     */
+    renderSovProviderDetails(providerId) {
+        const container = document.getElementById('sovDetailView');
+        if (!container) return;
+
+        const provider = this.providers.find(p => p.id === providerId);
+        const sovScores = window.SCC_DATA?.getProviderSovScores?.(providerId);
+        const sovExplanations = window.SCC_DATA?.getProviderSovExplanations?.(providerId);
+        const sovCriteria = window.SCC_DATA?.SOV_CRITERIA;
+
+        if (!provider || !sovScores || !sovCriteria) {
+            container.innerHTML = '<p class="sov-no-data">Keine SOV-Daten verfügbar</p>';
+            return;
+        }
+
+        // Kontrolle = gewichteter SOV-Score (bereits berechnet)
+        const kontrolle = provider.control;
+        const seal = window.SCC_DATA?.getSealLevel?.(provider.control);
+
+        let html = `
+            <div class="sov-detail-header">
+                <div class="sov-detail-provider">
+                    <div class="sov-detail-color" style="background: ${provider.color}"></div>
+                    <div>
+                        <div class="sov-detail-name">${provider.name}</div>
+                        <div class="sov-detail-category">${this.getCategoryLabel(provider.category)}</div>
+                    </div>
+                </div>
+                <div class="sov-detail-scores">
+                    <div class="sov-detail-avg">
+                        <span class="sov-detail-avg-label">Kontrolle</span>
+                        <span class="sov-detail-avg-value">${kontrolle}</span>
+                    </div>
+                    ${seal ? `<span class="seal-badge seal-badge-${seal.level}"><i class="fa-solid fa-shield-halved"></i> ${seal.shortLabel}</span>` : ''}
+                </div>
+            </div>
+            <div class="sov-detail-bars">
+        `;
+
+        Object.entries(sovCriteria).forEach(([key, criteria]) => {
+            const score = sovScores[criteria.id] || 0;
+            const explanation = sovExplanations ? sovExplanations[criteria.id] : null;
+            const scoreClass = score >= 70 ? 'high' : (score >= 40 ? 'medium' : 'low');
+
+            html += `
+                <div class="sov-detail-item">
+                    <div class="sov-detail-item-header">
+                        <div class="sov-detail-item-label">
+                            <i class="fa-solid ${criteria.icon}"></i>
+                            <span>${criteria.shortName}</span>
+                        </div>
+                        <span class="sov-detail-item-score sov-score-${scoreClass}">${score}</span>
+                    </div>
+                    <div class="sov-detail-item-bar">
+                        <div class="sov-detail-item-bar-fill sov-bar-${scoreClass}" style="width: ${score}%"></div>
+                    </div>
+                    ${explanation ? `<div class="sov-detail-item-explanation">${explanation}</div>` : ''}
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        container.innerHTML = html;
     }
 }
 

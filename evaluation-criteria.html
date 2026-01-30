@@ -131,6 +131,10 @@
                 <i class="fas fa-cloud"></i>
                 Provider-Details
             </a>
+            <a href="#sov" class="drawer-nav-link drawer-internal-link">
+                <i class="fas fa-shield-halved"></i>
+                SOV-Bewertung
+            </a>
             <div class="drawer-divider"></div>
             <span class="drawer-section-label">Kontakt</span>
             <a href="https://outlook.office.com/book/BTCAGManagedCloudServices@btcag.onmicrosoft.com/s/U1HPjhE9b0qdW-uTHThOSw2?ismsaljsauthenabled" target="_blank" class="drawer-nav-link primary">
@@ -187,6 +191,7 @@
                     <a href="#kontrolle" class="criteria-nav-link">Kontrolle & Souveränität</a>
                     <a href="#leistung" class="criteria-nav-link">Leistung & Performance</a>
                     <a href="#provider" class="criteria-nav-link">Provider-Details</a>
+                    <a href="#sov" class="criteria-nav-link">SOV-Bewertung</a>
                 </div>
 
                 <!-- Mobile Section Navigation (Tabs) - Tablet -->
@@ -196,6 +201,7 @@
                         <a href="#kontrolle" class="mobile-criteria-tab" data-section="kontrolle">Kontrolle</a>
                         <a href="#leistung" class="mobile-criteria-tab" data-section="leistung">Leistung</a>
                         <a href="#provider" class="mobile-criteria-tab" data-section="provider">Provider</a>
+                        <a href="#sov" class="mobile-criteria-tab" data-section="sov">SOV</a>
                     </div>
                 </div>
 
@@ -206,6 +212,7 @@
                         <option value="kontrolle">Kontrolle & Souveränität</option>
                         <option value="leistung">Leistung & Performance</option>
                         <option value="provider">Provider-Details</option>
+                        <option value="sov">SOV-Bewertung</option>
                     </select>
                 </div>
 
@@ -256,7 +263,13 @@
                                 Gesamt-Score = (Kontrolle × Gewicht_Kontrolle) + (Leistung × Gewicht_Leistung)
                             </code>
                             <p style="margin-top: 1rem; font-size: 0.9rem;">
-                                Die Gewichtung wird über den Strategie-Slider gesteuert:
+                                <strong>Kontrolle</strong> wird aus den 8 SOV-Kriterien des EU Cloud Sovereignty Frameworks berechnet:
+                            </p>
+                            <code class="formula" style="font-size: 0.8rem; margin: 0.5rem 0;">
+                                Kontrolle = Σ (SOV_i × EU_Gewicht_i)
+                            </code>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                                Die Gesamt-Gewichtung wird über den Strategie-Slider gesteuert:
                             </p>
                             <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
                                 <li><strong>Maximale Souveränität:</strong> 90% Kontrolle, 10% Leistung</li>
@@ -280,9 +293,24 @@
                     <div class="criteria-card">
                         <div class="criteria-intro">
                             <p>
-                                Bewertet die Datensouveränität und rechtliche Kontrolle über Ihre Infrastruktur.
-                                Dieser Score basiert auf der Analyse von Jurisdiktion, DSGVO-Konformität, Vendor Lock-in Risiko,
-                                Eigentümerstruktur und Transparenz.
+                                Der <strong>Kontrolle-Score</strong> wird automatisch aus den <strong>8 SOV-Kriterien</strong>
+                                (Sovereignty Objectives) des <strong>EU Cloud Sovereignty Frameworks</strong> berechnet.
+                                Jedes SOV-Kriterium wird gemäß EU-Spezifikation gewichtet:
+                            </p>
+                            <div class="sov-weights-overview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem; margin: 1rem 0; font-size: 0.85rem;">
+                                <span><strong>SOV-1</strong> Strategie: 15%</span>
+                                <span><strong>SOV-2</strong> Rechtlich: 10%</span>
+                                <span><strong>SOV-3</strong> Daten/AI: 10%</span>
+                                <span><strong>SOV-4</strong> Operativ: 15%</span>
+                                <span><strong>SOV-5</strong> Lieferkette: <strong style="color: var(--btc-primary);">20%</strong></span>
+                                <span><strong>SOV-6</strong> Technologie: 15%</span>
+                                <span><strong>SOV-7</strong> Sicherheit: 10%</span>
+                                <span><strong>SOV-8</strong> Nachhaltigkeit: 5%</span>
+                            </div>
+                            <p class="note" style="margin-top: 1rem;">
+                                <i class="fa-solid fa-arrow-right"></i>
+                                Details zu jedem SOV-Kriterium und Provider-Einzelbewertungen finden Sie im
+                                <a href="#sov" style="color: var(--btc-primary);">SOV-Bewertung</a>-Abschnitt.
                             </p>
                         </div>
 
@@ -499,6 +527,38 @@
                     </div>
                 </section>
 
+                <!-- SOV-Bewertung nach EU-Framework -->
+                <section id="sov" class="criteria-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-shield-halved"></i> SOV-Bewertung (EU Cloud Sovereignty Framework)
+                    </h2>
+                    <div class="criteria-card">
+                        <p>
+                            Das <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" class="framework-link">EU Cloud Sovereignty Framework <i class="fa-solid fa-arrow-up-right-from-square"></i></a> definiert <strong>8 Souveränitätsziele (SOV-1 bis SOV-8)</strong>,
+                            die zusammen das SEAL-Level eines Cloud-Anbieters bestimmen. Hier sehen Sie die detaillierte
+                            Bewertung jedes Providers nach diesen Kriterien.
+                        </p>
+
+                        <div class="sov-criteria-legend">
+                            <h3>Die 8 Souveränitätsziele</h3>
+                            <div class="sov-criteria-grid" id="sovCriteriaGrid">
+                                <!-- Wird dynamisch gefüllt -->
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">SOV-Scores pro Provider</h3>
+                        <p class="sov-matrix-hint">
+                            Wählen Sie einen Provider aus, um dessen detaillierte SOV-Bewertung zu sehen.
+                        </p>
+                        <div class="sov-provider-selector" id="sovProviderSelector">
+                            <!-- Provider-Buttons werden dynamisch eingefügt -->
+                        </div>
+                        <div class="sov-detail-view" id="sovDetailView">
+                            <!-- SOV-Details werden hier angezeigt -->
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
 
@@ -511,7 +571,7 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.4.0</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 3.0.0</span>
             </div>
         </footer>
 

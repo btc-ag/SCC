@@ -186,7 +186,7 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.4.0</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 3.0.0</span>
             </div>
         </footer>
     </div>
@@ -419,6 +419,15 @@
                     </div>
                 </div>
 
+                <!-- Custom Scores Hint -->
+                <div class="custom-scores-hint" id="customScoresHint" style="display: none;">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Die Bewertung basiert auf individuell angepassten Kriterien und weicht von den Standardwerten ab.</span>
+                    <a href="evaluation-criteria.html" class="custom-scores-hint-link">
+                        <i class="fa-solid fa-arrow-right"></i> Kriterien bearbeiten
+                    </a>
+                </div>
+
                 <!-- Results -->
                 <div class="results-grid" id="resultsGrid"></div>
 
@@ -427,8 +436,59 @@
                     <div class="legend-title">Cloud-Anbieter Kategorien</div>
                     <div class="legend-grid" id="legendGrid"></div>
                 </div>
+
+                <!-- SEAL Legend -->
+                <div class="seal-legend-card">
+                    <div class="seal-legend-title">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        EU SEAL-Level (Sovereignty Effective Assurance Levels)
+                    </div>
+                    <div class="seal-legend-grid">
+                        <div class="seal-legend-item">
+                            <span class="seal-badge seal-badge-4"><i class="fa-solid fa-shield-halved"></i> SEAL-4</span>
+                            <span class="seal-legend-label">Vollständige Souveränität</span>
+                        </div>
+                        <div class="seal-legend-item">
+                            <span class="seal-badge seal-badge-3"><i class="fa-solid fa-shield-halved"></i> SEAL-3</span>
+                            <span class="seal-legend-label">Digital Resilience</span>
+                        </div>
+                        <div class="seal-legend-item">
+                            <span class="seal-badge seal-badge-2"><i class="fa-solid fa-shield-halved"></i> SEAL-2</span>
+                            <span class="seal-legend-label">Data Sovereignty</span>
+                        </div>
+                        <div class="seal-legend-item">
+                            <span class="seal-badge seal-badge-1"><i class="fa-solid fa-shield-halved"></i> SEAL-1</span>
+                            <span class="seal-legend-label">Basistransparenz</span>
+                        </div>
+                    </div>
+                    <p class="seal-legend-hint">Basierend auf dem EU Cloud Sovereignty Framework 2025</p>
+                </div>
             </div>
         </main>
+
+        <!-- SOV Detail Slide-out Panel -->
+        <div class="sov-panel-overlay" id="sovPanelOverlay"></div>
+        <aside class="sov-panel" id="sovPanel">
+            <div class="sov-panel-header">
+                <div class="sov-panel-title">
+                    <span class="sov-panel-provider-name" id="sovPanelProviderName">Provider</span>
+                    <span class="sov-panel-seal-badge" id="sovPanelSealBadge"></span>
+                </div>
+                <button class="sov-panel-close" id="sovPanelClose" aria-label="Schließen">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="sov-panel-content" id="sovPanelContent">
+                <!-- SOV-Kriterien werden hier dynamisch eingefügt -->
+            </div>
+            <div class="sov-panel-footer">
+                <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" class="sov-panel-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    SOV-Kriterien basierend auf EU Cloud Sovereignty Framework
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem; margin-left: 0.25rem;"></i>
+                </a>
+            </div>
+        </aside>
 
         <!-- Footer -->
         <footer class="footer">
@@ -439,7 +499,7 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 2.4.0</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 3.0.0</span>
             </div>
         </footer>
     </div>

@@ -65,6 +65,7 @@
         elements.passwordButton = document.getElementById('passwordButton');
         elements.drawerThemeToggle = document.getElementById('drawerThemeToggle');
         elements.desktopThemeToggle = document.getElementById('desktopThemeToggle');
+        elements.customScoresHint = document.getElementById('customScoresHint');
     }
 
     /**
@@ -89,6 +90,18 @@
             }
             return { ...provider };
         });
+    }
+
+    /**
+     * Prüft ob Custom Scores vorhanden sind und zeigt/versteckt Hinweis
+     */
+    function updateCustomScoresHint() {
+        if (!elements.customScoresHint) return;
+
+        const customScores = StorageManager.loadCustomScores();
+        const hasCustomScores = Object.keys(customScores).length > 0;
+
+        elements.customScoresHint.style.display = hasCustomScores ? 'flex' : 'none';
     }
 
     /**
@@ -179,10 +192,24 @@
         topProviders.forEach((provider, index) => {
             const card = document.createElement('div');
             card.className = 'result-card';
+            card.dataset.providerId = provider.id;
+            card.style.cursor = 'pointer';
             if (rankings[index] === 1) card.classList.add('winner');
 
+            // SEAL-Level ermitteln
+            const seal = SCC_DATA.getSealLevel ? SCC_DATA.getSealLevel(provider.control) : null;
+            const sealBadge = seal ? `
+                <div class="seal-badge seal-badge-${seal.level}" title="${seal.label}">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>${seal.shortLabel}</span>
+                </div>
+            ` : '';
+
             card.innerHTML = `
-                <div class="result-rank">#${rankings[index]}</div>
+                <div class="result-header">
+                    <div class="result-rank">#${rankings[index]}</div>
+                    ${sealBadge}
+                </div>
                 <div class="result-name">${provider.name}</div>
                 <div class="result-description">${provider.description}</div>
                 <div class="result-metrics">
@@ -193,7 +220,13 @@
                 <div class="score-bar">
                     <div class="score-fill" style="width: ${provider.score}%"></div>
                 </div>
+                <div class="result-card-hint">
+                    <i class="fa-solid fa-arrow-right"></i> Klicken für SOV-Details
+                </div>
             `;
+
+            // Klick-Handler für SOV-Panel
+            card.addEventListener('click', () => openSovPanel(provider));
 
             fragment.appendChild(card);
         });
@@ -217,6 +250,127 @@
                 <span class="legend-text">${item.text}</span>
             </div>
         `).join('');
+    }
+
+    // ========================================
+    // SOV Panel Functions
+    // ========================================
+
+    /**
+     * Öffnet das SOV-Detail-Panel für einen Provider
+     * @param {Object} provider - Provider-Objekt
+     */
+    function openSovPanel(provider) {
+        const panel = document.getElementById('sovPanel');
+        const overlay = document.getElementById('sovPanelOverlay');
+        const providerName = document.getElementById('sovPanelProviderName');
+        const sealBadge = document.getElementById('sovPanelSealBadge');
+        const content = document.getElementById('sovPanelContent');
+
+        if (!panel || !overlay) return;
+
+        // Header aktualisieren
+        providerName.textContent = provider.name;
+
+        // SEAL-Badge
+        const seal = SCC_DATA.getSealLevel ? SCC_DATA.getSealLevel(provider.control) : null;
+        if (seal) {
+            sealBadge.innerHTML = `
+                <span class="seal-badge seal-badge-${seal.level}">
+                    <i class="fa-solid fa-shield-halved"></i> ${seal.shortLabel}
+                </span>
+            `;
+        }
+
+        // SOV-Scores und Erklärungen laden
+        const sovScores = SCC_DATA.getProviderSovScores ? SCC_DATA.getProviderSovScores(provider.id) : null;
+        const sovExplanations = SCC_DATA.getProviderSovExplanations ? SCC_DATA.getProviderSovExplanations(provider.id) : null;
+        const sovCriteria = SCC_DATA.SOV_CRITERIA;
+
+        if (sovScores && sovCriteria) {
+            // Kontrolle = gewichteter SOV-Score (bereits berechnet)
+            const kontrolle = provider.control;
+
+            let html = `
+                <div class="sov-average">
+                    <span class="sov-average-label">Kontrolle (gewichtet)</span>
+                    <span class="sov-average-value">${kontrolle}</span>
+                    <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" class="sov-average-hint">
+                        <i class="fa-solid fa-circle-info"></i> Gewichtung gem. EU Cloud Sovereignty Framework
+                    </a>
+                </div>
+            `;
+
+            // SOV-Kriterien Items
+            Object.entries(sovCriteria).forEach(([key, criteria]) => {
+                const scoreKey = criteria.id;
+                const score = sovScores[scoreKey] || 0;
+                const explanation = sovExplanations ? sovExplanations[scoreKey] : null;
+                const scoreClass = score >= 70 ? 'sov-score-high' : (score >= 40 ? 'sov-score-medium' : 'sov-score-low');
+
+                html += `
+                    <div class="sov-item ${scoreClass}">
+                        <div class="sov-item-header">
+                            <div class="sov-item-label">
+                                <div class="sov-item-icon">
+                                    <i class="fa-solid ${criteria.icon}"></i>
+                                </div>
+                                <div>
+                                    <div class="sov-item-name">${criteria.name}</div>
+                                    <div class="sov-item-shortname">${criteria.shortName}</div>
+                                </div>
+                            </div>
+                            <div class="sov-item-score">${score}</div>
+                        </div>
+                        <div class="sov-item-bar">
+                            <div class="sov-item-bar-fill" style="width: ${score}%"></div>
+                        </div>
+                        <div class="sov-item-description">${explanation || criteria.description}</div>
+                    </div>
+                `;
+            });
+
+            content.innerHTML = html;
+        } else {
+            content.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Keine SOV-Daten verfügbar</p>';
+        }
+
+        // Panel öffnen
+        panel.classList.add('visible');
+        overlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Schließt das SOV-Panel
+     */
+    function closeSovPanel() {
+        const panel = document.getElementById('sovPanel');
+        const overlay = document.getElementById('sovPanelOverlay');
+
+        if (panel) panel.classList.remove('visible');
+        if (overlay) overlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    }
+
+    /**
+     * Initialisiert SOV-Panel Event-Listener
+     */
+    function initSovPanel() {
+        const closeBtn = document.getElementById('sovPanelClose');
+        const overlay = document.getElementById('sovPanelOverlay');
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeSovPanel);
+        }
+        if (overlay) {
+            overlay.addEventListener('click', closeSovPanel);
+        }
+
+        // ESC-Taste zum Schließen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSovPanel();
+        });
     }
 
     /**
@@ -283,6 +437,7 @@
         initializeLegend(isPublic);
         initializeFilters();
         updateVisualization(50);
+        updateCustomScoresHint();
     }
 
     /**
@@ -292,6 +447,7 @@
         const fullProviders = applyCustomScores(SCC_DATA.getProvidersCopy());
         currentProviders = isPublicAccess ? anonymizeProviders(fullProviders) : fullProviders;
         updateVisualization(parseInt(elements.slider?.value || 50));
+        updateCustomScoresHint();
     }
 
     /**
@@ -443,6 +599,9 @@
 
         // Event-Listener einrichten
         setupEventListeners();
+
+        // SOV-Panel initialisieren
+        initSovPanel();
 
         // Session prüfen
         checkSession();
