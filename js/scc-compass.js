@@ -603,7 +603,7 @@
         // SOV-Panel initialisieren
         initSovPanel();
 
-        // Direkt Vollversion initialisieren (Login deaktiviert für lokale Nutzung)
+        // Direkt Vollversion initialisieren (Login deaktiviert)
         initializeCompass(false);
     }
 
