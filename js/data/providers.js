@@ -226,7 +226,7 @@
             sov1: 100, sov2: 100, sov3: 95, sov4: 85, sov5: 70, sov6: 75, sov7: 90, sov8: 85
         },
         'ionos-cloud': {
-            sov1: 90, sov2: 85, sov3: 70, sov4: 60, sov5: 50, sov6: 55, sov7: 70, sov8: 60
+            sov1: 90, sov2: 90, sov3: 80, sov4: 70, sov5: 55, sov6: 60, sov7: 85, sov8: 70
         },
         'open-telekom-cloud': {
             sov1: 70, sov2: 75, sov3: 65, sov4: 55, sov5: 35, sov6: 50, sov7: 65, sov8: 55
@@ -324,14 +324,14 @@
             sov8: 'Eigene RZs, hoher Nachhaltigkeitsfokus'
         },
         'ionos-cloud': {
-            sov1: 'Deutsche Eigentümer (United Internet)',
-            sov2: 'Deutsches Recht, DSGVO-nativ',
-            sov3: 'EU-Datenresidenz, Basis-Encryption',
-            sov4: 'Deutscher Support, eingeschränkt',
-            sov5: 'Standard-Hardware, EU-Fokus',
-            sov6: 'Standard-APIs, moderate Offenheit',
-            sov7: 'ISO 27001, Basis-Zertifizierungen',
-            sov8: 'Deutsche RZs, Basis-Nachhaltigkeit'
+            sov1: 'Deutsche Eigentümer (United Internet AG)',
+            sov2: 'Deutsches Recht, DSGVO-nativ, kein US-Zugriff',
+            sov3: 'EU-Datenresidenz, Verschlüsselung, BYOK',
+            sov4: 'Deutscher Support, etablierte Prozesse',
+            sov5: 'Standard-Hardware, EU-Lieferanten',
+            sov6: 'Standard-APIs, OpenStack-kompatibel',
+            sov7: 'ISO 27001, C5-Testat, BSI-konform',
+            sov8: 'Deutsche RZs, Nachhaltigkeitsinitiativen'
         },
         'open-telekom-cloud': {
             sov1: 'Deutsche Telekom (Staatsanteil)',
