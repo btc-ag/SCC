@@ -5,6 +5,21 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2026-01-30
+
+### Changed
+- **Open Telekom Cloud SOV-Scores angepasst**: Konsistentere Bewertung im Vergleich zu IONOS und STACKIT
+  - SOV-1: 70 → 75 (Staatsanteil schützt vor Übernahmen)
+  - SOV-2: 75 → 85 (Deutsches Recht, DSGVO-konform)
+  - SOV-3: 65 → 80 (EU-Datenresidenz, BYOK verfügbar)
+  - SOV-4: 55 → 65 (Telekom-Betrieb, aber Huawei-Support)
+  - SOV-5: 35 → 40 (Huawei bleibt kritisch für Lieferkette)
+  - SOV-6: 50 → 65 (OpenStack-basiert, offene APIs)
+  - SOV-7: 65 → 85 (C5-Testat, ISO 27001, BSI-konform)
+  - SOV-8: 55 → 65 (Telekom-Nachhaltigkeitsstandards)
+- **OTC Kontrolle-Score**: ~57 → ~67 (bleibt SEAL-2)
+- **OTC SOV-Erklärungen**: Detailliertere Begründungen
+
 ## [3.0.0] - 2026-01-30
 
 ### Major Release - EU SEAL-Integration & SOV-Framework
@@ -183,6 +198,7 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **3.0.1** (2026-01-30) - OTC SOV-Scores Anpassung: Konsistentere Bewertung
 - **3.0.0** (2026-01-30) - EU SEAL-Integration: SOV-Framework, SEAL-Level, SOV-Panel
 - **2.4.0** (2026-01-29) - Code-Modernisierung: Event-Handler, Tabellen-Refactoring, Input-Validierung
 - **2.3.1** (2026-01-29) - Image Optimization: Alt-Texte, Width/Height, Lazy Loading

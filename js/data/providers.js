@@ -229,7 +229,7 @@
             sov1: 90, sov2: 95, sov3: 90, sov4: 80, sov5: 60, sov6: 65, sov7: 90, sov8: 75
         },
         'open-telekom-cloud': {
-            sov1: 70, sov2: 75, sov3: 65, sov4: 55, sov5: 35, sov6: 50, sov7: 65, sov8: 55
+            sov1: 75, sov2: 85, sov3: 80, sov4: 65, sov5: 40, sov6: 65, sov7: 85, sov8: 65
         },
         'openstack-private-cloud': {
             sov1: 100, sov2: 100, sov3: 100, sov4: 100, sov5: 70, sov6: 100, sov7: 75, sov8: 50
@@ -334,14 +334,14 @@
             sov8: 'Deutsche RZs, Nachhaltigkeitsinitiativen, erneuerbare Energie'
         },
         'open-telekom-cloud': {
-            sov1: 'Deutsche Telekom (Staatsanteil)',
-            sov2: 'Deutsches Recht, DSGVO',
-            sov3: 'EU-Datenresidenz, BYOK',
-            sov4: 'Telekom-Betrieb, Huawei-Technologie',
-            sov5: 'Huawei-Hardware, kritisch bewertet',
-            sov6: 'OpenStack-basiert, offene APIs',
-            sov7: 'C5, ISO 27001, BSI',
-            sov8: 'Telekom-Nachhaltigkeitsstandards'
+            sov1: 'Deutsche Telekom mit ~30% Staatsanteil, Schutz vor Übernahmen',
+            sov2: 'Deutsches Recht, DSGVO-konform, kein US-Zugriff',
+            sov3: 'EU-Datenresidenz, BYOK verfügbar, Verschlüsselung',
+            sov4: 'Telekom-Betrieb, aber Huawei L2/L3-Support',
+            sov5: 'Huawei-Hardware und -Software, kritisch für Lieferkette',
+            sov6: 'OpenStack-basiert, offene APIs und Standards',
+            sov7: 'C5-Testat, ISO 27001, BSI-konform',
+            sov8: 'Telekom-Nachhaltigkeitsstandards, grüne Energie'
         },
         'openstack-private-cloud': {
             sov1: 'Vollständige eigene Kontrolle',
