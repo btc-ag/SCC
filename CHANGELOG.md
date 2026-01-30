@@ -5,6 +5,18 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.2] - 2026-01-30
+
+### Changed
+- **Kriterien-Seite Restrukturierung**: SOV-Sektion in Kontrolle-Sektion integriert
+  - Separate SOV-Navigation entfernt (4 statt 5 Tabs)
+  - **Neues SOV-Accordion**: Provider-Tabelle und SOV-Details in einer aufklappbaren Ansicht kombiniert
+  - Jeder Provider-Eintrag zeigt: Name, Kategorie, Kontrolle-Score, SEAL-Badge
+  - Klick auf Provider klappt SOV-Detail-Grid mit allen 8 Kriterien auf
+  - 8 SOV-Kriterien als Factor-Cards mit EU-Gewichtungen dargestellt
+  - Bewertungsfaktoren durch SOV-basierte Bewertungskriterien ersetzt
+  - EU Framework Link in Kontrolle-Sektion integriert
+
 ## [3.0.1] - 2026-01-30
 
 ### Changed
@@ -198,6 +210,7 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **3.0.2** (2026-01-30) - Kriterien-Seite: SOV-Sektion in Kontrolle integriert
 - **3.0.1** (2026-01-30) - OTC SOV-Scores Anpassung: Konsistentere Bewertung
 - **3.0.0** (2026-01-30) - EU SEAL-Integration: SOV-Framework, SEAL-Level, SOV-Panel
 - **2.4.0** (2026-01-29) - Code-Modernisierung: Event-Handler, Tabellen-Refactoring, Input-Validierung

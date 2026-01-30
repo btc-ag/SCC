@@ -131,10 +131,6 @@
                 <i class="fas fa-cloud"></i>
                 Provider-Details
             </a>
-            <a href="#sov" class="drawer-nav-link drawer-internal-link">
-                <i class="fas fa-shield-halved"></i>
-                SOV-Bewertung
-            </a>
             <div class="drawer-divider"></div>
             <span class="drawer-section-label">Kontakt</span>
             <a href="https://outlook.office.com/book/BTCAGManagedCloudServices@btcag.onmicrosoft.com/s/U1HPjhE9b0qdW-uTHThOSw2?ismsaljsauthenabled" target="_blank" class="drawer-nav-link primary">
@@ -191,7 +187,6 @@
                     <a href="#kontrolle" class="criteria-nav-link">Kontrolle & Souveränität</a>
                     <a href="#leistung" class="criteria-nav-link">Leistung & Performance</a>
                     <a href="#provider" class="criteria-nav-link">Provider-Details</a>
-                    <a href="#sov" class="criteria-nav-link">SOV-Bewertung</a>
                 </div>
 
                 <!-- Mobile Section Navigation (Tabs) - Tablet -->
@@ -201,7 +196,6 @@
                         <a href="#kontrolle" class="mobile-criteria-tab" data-section="kontrolle">Kontrolle</a>
                         <a href="#leistung" class="mobile-criteria-tab" data-section="leistung">Leistung</a>
                         <a href="#provider" class="mobile-criteria-tab" data-section="provider">Provider</a>
-                        <a href="#sov" class="mobile-criteria-tab" data-section="sov">SOV</a>
                     </div>
                 </div>
 
@@ -212,7 +206,6 @@
                         <option value="kontrolle">Kontrolle & Souveränität</option>
                         <option value="leistung">Leistung & Performance</option>
                         <option value="provider">Provider-Details</option>
-                        <option value="sov">SOV-Bewertung</option>
                     </select>
                 </div>
 
@@ -308,102 +301,133 @@
                                 <span><strong>SOV-8</strong> Nachhaltigkeit: 5%</span>
                             </div>
                             <p class="note" style="margin-top: 1rem;">
-                                <i class="fa-solid fa-arrow-right"></i>
-                                Details zu jedem SOV-Kriterium und Provider-Einzelbewertungen finden Sie im
-                                <a href="#sov" style="color: var(--btc-primary);">SOV-Bewertung</a>-Abschnitt.
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                Basierend auf dem <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" style="color: var(--btc-primary);">EU Cloud Sovereignty Framework</a>.
                             </p>
                         </div>
 
-                        <h3><i class="fa-solid fa-list-check"></i> Bewertungsfaktoren</h3>
+                        <h3><i class="fa-solid fa-list-check"></i> Die 8 SOV-Kriterien im Detail</h3>
                         <div class="factors-grid">
                             <div class="factor-card">
                                 <div class="factor-icon" style="background: #5A67D8;">
-                                    <i class="fa-solid fa-gavel"></i>
+                                    <i class="fa-solid fa-building-columns"></i>
                                 </div>
-                                <h4>Jurisdiktion & Rechtsraum</h4>
-                                <p>In welchem Rechtsraum operiert der Anbieter?</p>
+                                <h4>SOV-1: Strategische Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(15%)</span></h4>
+                                <p>Sitz und Kontrolle der Entscheidungsorgane</p>
                                 <ul>
-                                    <li><strong>Deutschland:</strong> Höchste Kontrolle (85-100 Punkte)</li>
-                                    <li><strong>EU:</strong> Hohe Kontrolle, DSGVO-konform (55-90 Punkte)</li>
-                                    <li><strong>Souveräne EU-Cloud:</strong> Europäische Souveränität (80-85 Punkte)</li>
-                                    <li><strong>USA/Global:</strong> Eingeschränkte Kontrolle (40-42 Punkte)</li>
-                                    <li><strong>Private Cloud:</strong> Maximale Kontrolle (85-100 Punkte)</li>
+                                    <li><strong>100:</strong> 100% deutsche/EU Eigentümer</li>
+                                    <li><strong>70-90:</strong> EU-Eigentümer mit Staatsanteil</li>
+                                    <li><strong>30-60:</strong> EU-Tochter von US-Konzern</li>
+                                    <li><strong>15:</strong> US-Konzern ohne EU-Garantien</li>
                                 </ul>
                             </div>
 
                             <div class="factor-card">
                                 <div class="factor-icon" style="background: #10B981;">
-                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <i class="fa-solid fa-scale-balanced"></i>
                                 </div>
-                                <h4>DSGVO & Datenschutz</h4>
-                                <p>Einhaltung europäischer Datenschutzstandards</p>
+                                <h4>SOV-2: Rechtliche Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(10%)</span></h4>
+                                <p>EU-Recht, Schutz vor CLOUD Act/FISA</p>
                                 <ul>
-                                    <li><strong>Native DSGVO:</strong> Provider in EU/Deutschland</li>
-                                    <li><strong>DSGVO-zertifiziert:</strong> US-Provider mit EU-Garantien</li>
-                                    <li><strong>Private Cloud:</strong> Vollständige Kontrolle über Datenschutz</li>
-                                    <li><strong>Souveräne Clouds:</strong> Erweiterte Souveränitätsgarantien</li>
+                                    <li><strong>100:</strong> Deutsches Recht, kein US-Zugriff</li>
+                                    <li><strong>85-95:</strong> EU-Recht mit CLOUD Act-Schutz</li>
+                                    <li><strong>40-70:</strong> Vertraglicher Schutz</li>
+                                    <li><strong>20:</strong> Unterliegt US-Recht</li>
                                 </ul>
                             </div>
 
                             <div class="factor-card">
                                 <div class="factor-icon" style="background: #F59E0B;">
-                                    <i class="fa-solid fa-lock-open"></i>
+                                    <i class="fa-solid fa-database"></i>
                                 </div>
-                                <h4>Vendor Lock-in Risiko</h4>
-                                <p>Wie einfach ist ein Anbieterwechsel?</p>
+                                <h4>SOV-3: Daten- & KI-Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(10%)</span></h4>
+                                <p>BYOK, Datenresidenz, verifizierbare Löschung</p>
                                 <ul>
-                                    <li><strong>Open Source:</strong> OpenStack, volle Portabilität</li>
-                                    <li><strong>Standard-APIs:</strong> Kompatible Schnittstellen</li>
-                                    <li><strong>Hybrid:</strong> Mix aus proprietary und standard</li>
-                                    <li><strong>Proprietary:</strong> Proprietäre Services (Hyperscaler)</li>
+                                    <li><strong>95-100:</strong> Volle Datenhoheit, eigene Keys</li>
+                                    <li><strong>80-90:</strong> EU-Datenresidenz, BYOK</li>
+                                    <li><strong>50-65:</strong> EU-Regionen verfügbar</li>
+                                    <li><strong>55:</strong> Standard-Verschlüsselung</li>
                                 </ul>
                             </div>
 
                             <div class="factor-card">
                                 <div class="factor-icon" style="background: #8B5CF6;">
-                                    <i class="fa-solid fa-building"></i>
+                                    <i class="fa-solid fa-gears"></i>
                                 </div>
-                                <h4>Eigentümerstruktur</h4>
-                                <p>Wem gehört der Cloud-Provider?</p>
+                                <h4>SOV-4: Operative Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(15%)</span></h4>
+                                <p>Exit-Fähigkeit, EU-basierte Teams</p>
                                 <ul>
-                                    <li><strong>Deutsche Eigentümer:</strong> STACKIT, IONOS</li>
-                                    <li><strong>EU-Eigentümer:</strong> OVH, plusserver</li>
-                                    <li><strong>US-Konzern mit EU-Garantien:</strong> DELOS, AWS ESC</li>
-                                    <li><strong>US-Konzern:</strong> AWS, Azure, GCP, Oracle</li>
+                                    <li><strong>85-100:</strong> Voller Betrieb in EU/DE</li>
+                                    <li><strong>65-90:</strong> Dediziertes EU-Team</li>
+                                    <li><strong>45-55:</strong> Globaler Support</li>
+                                    <li><strong>40:</strong> Eingeschränkter EU-Support</li>
                                 </ul>
                             </div>
 
                             <div class="factor-card">
-                                <div class="factor-icon" style="background: #EC4899;">
-                                    <i class="fa-solid fa-server"></i>
+                                <div class="factor-icon" style="background: #EF4444;">
+                                    <i class="fa-solid fa-link"></i>
                                 </div>
-                                <h4>Infrastruktur-Standort</h4>
-                                <p>Wo werden die Daten gespeichert?</p>
+                                <h4>SOV-5: Lieferketten-Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem; font-weight: bold;">(20%)</span></h4>
+                                <p>Hardware, Firmware, SBOMs - höchste Gewichtung!</p>
                                 <ul>
-                                    <li><strong>Deutschland:</strong> RZs in Deutschland</li>
-                                    <li><strong>EU:</strong> RZs innerhalb der EU</li>
-                                    <li><strong>On-Premises:</strong> Im eigenen Rechenzentrum</li>
-                                    <li><strong>Global:</strong> Weltweite Rechenzentren</li>
+                                    <li><strong>70:</strong> EU-Hardware-Fokus, Open Source</li>
+                                    <li><strong>50-60:</strong> EU-Kontrolle über US-Hardware</li>
+                                    <li><strong>35-45:</strong> Kritische Abhängigkeiten (z.B. Huawei)</li>
+                                    <li><strong>25-30:</strong> Proprietär, keine Transparenz</li>
                                 </ul>
                             </div>
 
                             <div class="factor-card">
                                 <div class="factor-icon" style="background: #06B6D4;">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <i class="fa-solid fa-code"></i>
                                 </div>
-                                <h4>Transparenz & Zugriffe</h4>
-                                <p>Offenheit über Datenverarbeitung</p>
+                                <h4>SOV-6: Technologie-Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(15%)</span></h4>
+                                <p>Offene APIs, Open Source, Vendor Lock-in</p>
                                 <ul>
-                                    <li><strong>Volle Transparenz:</strong> Open Source, eigene Kontrolle</li>
-                                    <li><strong>EU-Garantien:</strong> Souveräne Clouds mit Transparenz</li>
-                                    <li><strong>Standard-Reporting:</strong> Basis-Transparenz</li>
-                                    <li><strong>Limited:</strong> Eingeschränkte Einblicke</li>
+                                    <li><strong>100:</strong> 100% Open Source (OpenStack)</li>
+                                    <li><strong>65-75:</strong> OpenStack-basiert, offene APIs</li>
+                                    <li><strong>40-55:</strong> Mix aus Standard und proprietär</li>
+                                    <li><strong>30-40:</strong> Stark proprietär</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #EC4899;">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h4>SOV-7: Sicherheits-Souveränität <span style="color: var(--btc-primary); font-size: 0.8rem;">(10%)</span></h4>
+                                <p>EU-Security Ops, Zertifizierungen</p>
+                                <ul>
+                                    <li><strong>90-95:</strong> C5, ISO 27001, BSI, VS-NfD</li>
+                                    <li><strong>80-85:</strong> C5, ISO 27001, BSI-konform</li>
+                                    <li><strong>65-70:</strong> ISO 27001, SOC 2</li>
+                                    <li><strong>75:</strong> Open Source (Eigenverantwortung)</li>
+                                </ul>
+                            </div>
+
+                            <div class="factor-card">
+                                <div class="factor-icon" style="background: #22C55E;">
+                                    <i class="fa-solid fa-leaf"></i>
+                                </div>
+                                <h4>SOV-8: Ökologische Nachhaltigkeit <span style="color: var(--btc-primary); font-size: 0.8rem;">(5%)</span></h4>
+                                <p>PUE, erneuerbare Energien, Emissionsmetriken</p>
+                                <ul>
+                                    <li><strong>85:</strong> Eigene RZs, hoher Nachhaltigkeitsfokus</li>
+                                    <li><strong>60-75:</strong> Erneuerbare Energie, Transparenz</li>
+                                    <li><strong>50-55:</strong> Standard-Nachhaltigkeitsberichte</li>
+                                    <li><strong>50:</strong> Eigene Infrastruktur (variabel)</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <h3><i class="fa-solid fa-chart-line"></i> Provider-Scores im Detail</h3>
-                        <div id="controlScoresTable"></div>
+                        <h3><i class="fa-solid fa-chart-line"></i> Provider-Scores & SOV-Details</h3>
+                        <p class="sov-matrix-hint">
+                            Klicken Sie auf einen Provider, um dessen detaillierte SOV-Bewertung aufzuklappen.
+                        </p>
+                        <div id="controlScoresAccordion" class="sov-accordion">
+                            <!-- Provider-Accordion wird dynamisch eingefügt -->
+                        </div>
                     </div>
                 </section>
 
@@ -527,38 +551,6 @@
                     </div>
                 </section>
 
-                <!-- SOV-Bewertung nach EU-Framework -->
-                <section id="sov" class="criteria-section">
-                    <h2 class="section-title">
-                        <i class="fa-solid fa-shield-halved"></i> SOV-Bewertung (EU Cloud Sovereignty Framework)
-                    </h2>
-                    <div class="criteria-card">
-                        <p>
-                            Das <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" class="framework-link">EU Cloud Sovereignty Framework <i class="fa-solid fa-arrow-up-right-from-square"></i></a> definiert <strong>8 Souveränitätsziele (SOV-1 bis SOV-8)</strong>,
-                            die zusammen das SEAL-Level eines Cloud-Anbieters bestimmen. Hier sehen Sie die detaillierte
-                            Bewertung jedes Providers nach diesen Kriterien.
-                        </p>
-
-                        <div class="sov-criteria-legend">
-                            <h3>Die 8 Souveränitätsziele</h3>
-                            <div class="sov-criteria-grid" id="sovCriteriaGrid">
-                                <!-- Wird dynamisch gefüllt -->
-                            </div>
-                        </div>
-
-                        <h3 style="margin-top: 2rem;">SOV-Scores pro Provider</h3>
-                        <p class="sov-matrix-hint">
-                            Wählen Sie einen Provider aus, um dessen detaillierte SOV-Bewertung zu sehen.
-                        </p>
-                        <div class="sov-provider-selector" id="sovProviderSelector">
-                            <!-- Provider-Buttons werden dynamisch eingefügt -->
-                        </div>
-                        <div class="sov-detail-view" id="sovDetailView">
-                            <!-- SOV-Details werden hier angezeigt -->
-                        </div>
-                    </div>
-                </section>
-
             </div>
         </main>
 
@@ -571,7 +563,7 @@
                     <a href="https://www.btc-ag.com/digital-sovereignty" class="footer-link">Mehr über Go Sovereign!</a> |
                     <a href="https://www.btc-ag.com/Impressum" class="footer-link">Impressum</a>
                 </p>
-                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 3.0.1</span>
+                <span style="position: absolute; bottom: 0.5rem; right: 1rem; font-size: 0.7rem; color: var(--gray-400); opacity: 0.6;">Version 3.0.2</span>
             </div>
         </footer>
 

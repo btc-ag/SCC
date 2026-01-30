@@ -28,10 +28,6 @@ class SCCCriteriaPage {
         this.renderPerformanceScoresTable();
         this.renderProviderDetailsTable();
 
-        // SOV-Sektion rendern
-        this.renderSovCriteriaLegend();
-        this.renderSovProviderSelector();
-
         // Active Link auf Scroll
         this.initScrollSpy();
 
@@ -235,43 +231,124 @@ class SCCCriteriaPage {
     }
 
     /**
-     * Rendert die Kontrolle-Scores-Tabelle
+     * Rendert die kombinierte Kontrolle-Scores + SOV-Details Accordion
      */
     renderControlScoresTable() {
-        const containerId = 'controlScoresTable';
-        const container = document.getElementById(containerId);
+        const container = document.getElementById('controlScoresAccordion');
         if (!container) return;
 
         const sortedProviders = [...this.providers].sort((a, b) =>
             this.getEffectiveScore(b.id, 'control') - this.getEffectiveScore(a.id, 'control')
         );
 
-        const rows = sortedProviders.map(provider => {
+        const sovCriteria = window.SCC_DATA?.SOV_CRITERIA;
+
+        const items = sortedProviders.map(provider => {
             const score = this.getEffectiveScore(provider.id, 'control');
             const isCustom = this.hasCustomScores(provider.id);
+            const seal = window.SCC_DATA?.getSealLevel?.(score);
+            const sovScores = window.SCC_DATA?.getProviderSovScores?.(provider.id);
+            const sovExplanations = window.SCC_DATA?.getProviderSovExplanations?.(provider.id);
+
+            // SOV-Details HTML
+            let sovDetailsHtml = '';
+            if (sovScores && sovCriteria) {
+                sovDetailsHtml = Object.entries(sovCriteria).map(([key, criteria]) => {
+                    const sovScore = sovScores[criteria.id] || 0;
+                    const explanation = sovExplanations ? sovExplanations[criteria.id] : '';
+                    const scoreClass = sovScore >= 70 ? 'high' : (sovScore >= 40 ? 'medium' : 'low');
+                    return `
+                        <div class="sov-accordion-detail-item">
+                            <div class="sov-accordion-detail-header">
+                                <div class="sov-accordion-detail-label">
+                                    <i class="fa-solid ${criteria.icon}"></i>
+                                    <span>${criteria.shortName}: ${criteria.name}</span>
+                                </div>
+                                <span class="sov-accordion-detail-score sov-score-${scoreClass}">${sovScore}</span>
+                            </div>
+                            <div class="sov-accordion-detail-bar">
+                                <div class="sov-accordion-detail-bar-fill sov-bar-${scoreClass}" style="width: ${sovScore}%"></div>
+                            </div>
+                            ${explanation ? `<div class="sov-accordion-detail-explanation">${explanation}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+            }
+
             return `
-                <div class="scores-table-row ${isCustom ? 'custom' : ''}">
-                    <div class="scores-table-cell">${this.renderProviderNameCell(provider, isCustom)}</div>
-                    <div class="scores-table-cell">${this.renderCategoryBadge(provider.category)}</div>
-                    <div class="scores-table-cell">${this.renderScoreCell(score, provider.color)}</div>
-                    <div class="scores-table-cell">${this.renderEditButton(provider.id)}</div>
+                <div class="sov-accordion-item ${isCustom ? 'custom' : ''}" data-provider-id="${provider.id}">
+                    <div class="sov-accordion-header" role="button" tabindex="0" aria-expanded="false">
+                        <div class="sov-accordion-provider">
+                            <div class="sov-accordion-color" style="background: ${provider.color}"></div>
+                            <div class="sov-accordion-info">
+                                <span class="sov-accordion-name">${provider.name}${isCustom ? ' <i class="fa-solid fa-pen" title="Angepasst"></i>' : ''}</span>
+                                <span class="sov-accordion-category">${this.getCategoryLabel(provider.category)}</span>
+                            </div>
+                        </div>
+                        <div class="sov-accordion-score-group">
+                            ${seal ? `<span class="seal-badge seal-badge-${seal.level}"><i class="fa-solid fa-shield-halved"></i> ${seal.shortLabel}</span>` : ''}
+                            <div class="sov-accordion-score" style="background: ${provider.color}20; color: ${provider.color}; border-color: ${provider.color}">
+                                ${score}
+                            </div>
+                            <button class="sov-accordion-edit" data-provider-id="${provider.id}" title="Bearbeiten">
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
+                            <span class="sov-accordion-toggle"><i class="fa-solid fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                    <div class="sov-accordion-content" aria-hidden="true">
+                        <div class="sov-accordion-details">
+                            ${sovDetailsHtml || '<p class="sov-no-data">Keine SOV-Daten verfügbar</p>'}
+                        </div>
+                    </div>
                 </div>
             `;
         }).join('');
 
-        container.innerHTML = `
-            <div class="scores-table">
-                <div class="scores-table-header">
-                    <div class="scores-table-cell">Provider</div>
-                    <div class="scores-table-cell">Kategorie</div>
-                    <div class="scores-table-cell">Kontrolle-Score</div>
-                    <div class="scores-table-cell">Aktionen</div>
-                </div>
-                ${rows}
-            </div>
-        `;
+        container.innerHTML = items;
 
-        this.bindEditButtons(containerId);
+        // Event-Listener für Accordion
+        container.querySelectorAll('.sov-accordion-header').forEach(header => {
+            header.addEventListener('click', (e) => {
+                // Nicht toggeln wenn Edit-Button geklickt
+                if (e.target.closest('.sov-accordion-edit')) return;
+                this.toggleAccordionItem(header.closest('.sov-accordion-item'));
+            });
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleAccordionItem(header.closest('.sov-accordion-item'));
+                }
+            });
+        });
+
+        // Event-Listener für Edit-Buttons
+        container.querySelectorAll('.sov-accordion-edit').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.openEditModal(btn.dataset.providerId);
+            });
+        });
+    }
+
+    /**
+     * Toggled ein Accordion-Item
+     * @param {HTMLElement} item
+     */
+    toggleAccordionItem(item) {
+        const isExpanded = item.classList.contains('expanded');
+        const header = item.querySelector('.sov-accordion-header');
+        const content = item.querySelector('.sov-accordion-content');
+
+        if (isExpanded) {
+            item.classList.remove('expanded');
+            header.setAttribute('aria-expanded', 'false');
+            content.setAttribute('aria-hidden', 'true');
+        } else {
+            item.classList.add('expanded');
+            header.setAttribute('aria-expanded', 'true');
+            content.setAttribute('aria-hidden', 'false');
+        }
     }
 
     /**
