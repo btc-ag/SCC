@@ -65,6 +65,7 @@
         elements.passwordButton = document.getElementById('passwordButton');
         elements.drawerThemeToggle = document.getElementById('drawerThemeToggle');
         elements.desktopThemeToggle = document.getElementById('desktopThemeToggle');
+        elements.customScoresHint = document.getElementById('customScoresHint');
     }
 
     /**
@@ -89,6 +90,18 @@
             }
             return { ...provider };
         });
+    }
+
+    /**
+     * Prüft ob Custom Scores vorhanden sind und zeigt/versteckt Hinweis
+     */
+    function updateCustomScoresHint() {
+        if (!elements.customScoresHint) return;
+
+        const customScores = StorageManager.loadCustomScores();
+        const hasCustomScores = Object.keys(customScores).length > 0;
+
+        elements.customScoresHint.style.display = hasCustomScores ? 'flex' : 'none';
     }
 
     /**
@@ -282,6 +295,9 @@
                 <div class="sov-average">
                     <span class="sov-average-label">Kontrolle (gewichtet)</span>
                     <span class="sov-average-value">${kontrolle}</span>
+                    <a href="https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en" target="_blank" rel="noopener" class="sov-average-hint">
+                        <i class="fa-solid fa-circle-info"></i> Gewichtung gem. EU Cloud Sovereignty Framework
+                    </a>
                 </div>
             `;
 
@@ -421,6 +437,7 @@
         initializeLegend(isPublic);
         initializeFilters();
         updateVisualization(50);
+        updateCustomScoresHint();
     }
 
     /**
@@ -430,6 +447,7 @@
         const fullProviders = applyCustomScores(SCC_DATA.getProvidersCopy());
         currentProviders = isPublicAccess ? anonymizeProviders(fullProviders) : fullProviders;
         updateVisualization(parseInt(elements.slider?.value || 50));
+        updateCustomScoresHint();
     }
 
     /**

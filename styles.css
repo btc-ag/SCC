@@ -1083,6 +1083,50 @@ body {
     opacity: 0.5;
 }
 
+/* Custom Scores Hint */
+.custom-scores-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.custom-scores-hint i {
+    color: var(--btc-primary);
+    font-size: 1rem;
+}
+
+.custom-scores-hint-link {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--btc-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.8rem;
+    transition: color 0.2s ease;
+}
+
+.custom-scores-hint-link:hover {
+    color: var(--btc-secondary);
+}
+
+.custom-scores-hint-link i {
+    font-size: 0.75rem;
+}
+
+[data-theme="dark"] .custom-scores-hint {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+    border-color: rgba(59, 130, 246, 0.25);
+}
+
 /* Results Grid */
 .results-grid {
     display: grid;
@@ -1442,12 +1486,19 @@ body {
 }
 
 .sov-panel-hint {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-tertiary);
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.sov-panel-hint:hover {
+    color: var(--btc-primary);
 }
 
 /* SOV Criteria Items */
@@ -1568,6 +1619,7 @@ body {
 /* SOV Average Section */
 .sov-average {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
@@ -1575,6 +1627,7 @@ body {
     border-radius: 12px;
     margin-bottom: 1rem;
     color: white;
+    gap: 0.25rem;
 }
 
 .sov-average-label {
@@ -1587,6 +1640,26 @@ body {
     font-weight: 800;
 }
 
+.sov-average-hint {
+    width: 100%;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.sov-average-hint:hover {
+    color: white;
+}
+
+.sov-average-hint i {
+    font-size: 0.6rem;
+}
+
 /* Dark Mode Adjustments */
 [data-theme="dark"] .sov-panel {
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
@@ -1594,6 +1667,23 @@ body {
 
 [data-theme="dark"] .sov-item-icon {
     background: rgba(0, 149, 218, 0.15);
+}
+
+/* Framework Link in Section Title */
+.framework-link {
+    color: var(--btc-primary);
+    text-decoration: none;
+    font-weight: inherit;
+    transition: color 0.2s ease;
+}
+
+.framework-link:hover {
+    color: var(--btc-secondary);
+}
+
+.framework-link i {
+    font-size: 0.7em;
+    margin-left: 0.25rem;
 }
 
 /* === SOV Section on Criteria Page === */
