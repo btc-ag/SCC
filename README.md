@@ -4,15 +4,17 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 
 ## Highlights
 
+- **EU SEAL-Integration**: Souveränitätsbewertung nach EU Cloud Sovereignty Framework (SEAL-0 bis SEAL-4)
+- **SOV-Kriterien**: 8 Souveränitätsziele (SOV-1 bis SOV-8) mit EU-konformer Gewichtung
 - **Strategie-Slider**: Dynamische Gewichtung zwischen Kontrolle und Leistung
-- **Matrix-Visualisierung**: Intuitive Darstellung aller Cloud-Anbieter in einem 2D-Koordinatensystem
+- **Matrix-Visualisierung**: Intuitive Darstellung aller Cloud-Anbieter mit SEAL-Zonen
+- **SOV-Detail-Panel**: Detaillierte Aufschlüsselung der Souveränitätsbewertung pro Provider
 - **Kategorie-Filter**: Filterung nach Hyperscaler, Souveräne Clouds, EU-Anbieter, Private Cloud und Hybrid-Lösungen
 - **Transparente Bewertung**: Detaillierte Dokumentation der Bewertungskriterien und Scoring-Methodik
 - **Public & Full Access Modus**: Anonymisierte Ansicht für öffentliche Nutzung oder Vollzugriff mit Anbieter-Namen
 - **Editierbare Scores**: Bewertungen können individuell angepasst werden
 - **Responsive Design**: Optimiert für Desktop, Tablet und Mobile mit Burger-Menü
 - **Dark Mode**: Vollständige Unterstützung für helle und dunkle Darstellung
-- **Mobile Navigation**: Modernes Slide-out Menü mit Touch-optimierter Bedienung
 
 ## Unterstützte Cloud-Anbieter
 
@@ -49,9 +51,10 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 
 ### 2. Matrix-Visualisierung
 - 2D-Darstellung aller Anbieter nach Kontrolle (Y-Achse) und Leistung (X-Achse)
+- **SEAL-Zonen**: Horizontale Bänder zeigen SEAL-Level-Bereiche (SEAL-0 bis SEAL-4)
 - Farbcodierung nach Anbieter-Kategorie
 - Größenbasiertes Ranking (größere Punkte = bessere Position)
-- Hover-Tooltips mit Score-Details
+- Hover-Tooltips mit Score-Details und SEAL-Level
 - Quadranten-Labels: Souverän, Autarkiefokussiert, Starter, Leistungsfokussiert
 
 ### 3. Kategorie-Filter
@@ -72,7 +75,18 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 - Transparente Darstellung der Scoring-Methodik und Berechnungsformel
 - Editierbare Provider-Scores mit Echtzeit-Aktualisierung
 
-### 6. Passwortschutz
+### 6. EU SEAL-Integration
+- **SEAL-Level (0-4)**: Basierend auf dem EU Cloud Sovereignty Framework
+  - SEAL-4: Vollständige Souveränität (Kontrolle ≥90)
+  - SEAL-3: Digital Resilience (Kontrolle 75-89)
+  - SEAL-2: Data Sovereignty (Kontrolle 55-74)
+  - SEAL-1: Basistransparenz (Kontrolle 40-54)
+  - SEAL-0: Keine Souveränität (Kontrolle <40)
+- **SOV-Kriterien (SOV-1 bis SOV-8)**: 8 Souveränitätsziele mit EU-Gewichtung
+- **SOV-Panel**: Klick auf Provider-Card öffnet Detail-Ansicht mit allen SOV-Scores
+- **SEAL-Badges**: Kompakte Level-Anzeige in Cards und Tooltips
+
+### 7. Passwortschutz
 - Public Access: Anonymisierte Anbieter-Namen (H1, H2, S1, E1, etc.)
 - Full Access: Vollständige Anbieter-Namen nach Passwort-Eingabe
 - Session-basierte Authentifizierung
@@ -105,11 +119,18 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 SCC/
 ├── index.html                        # Haupt-HTML (Compass)
 ├── evaluation-criteria.html          # Bewertungskriterien-Seite
+├── styles.css                        # Haupt-Styling
+├── js/
+│   ├── scc-compass.js                # Haupt-Logik (Compass)
+│   ├── data/
+│   │   └── providers.js              # Provider-Daten, SOV-Scores, SEAL-Konfiguration
+│   └── components/
+│       └── chart.js                  # Matrix-Visualisierung mit SEAL-Zonen
 ├── scc-criteria-page.js              # Bewertungskriterien-Logik
-├── styles.css                        # Haupt-Styling (shared mit SAA)
 ├── favicon.svg                       # Favicon
 ├── btc-logo.png                      # BTC AG Logo
 ├── LICENSE                           # Lizenz
+├── CHANGELOG.md                      # Änderungsprotokoll
 └── README.md                         # Diese Datei
 ```
 
@@ -136,12 +157,19 @@ Gesamt-Score = (Kontrolle × Gewicht_Kontrolle) + (Leistung × Gewicht_Leistung)
 ### Bewertungskriterien
 
 **Kontrolle & Souveränität (0-100 Punkte)**
-- Jurisdiktion & Rechtsraum
-- DSGVO & Datenschutz
-- Vendor Lock-in Risiko
-- Eigentümerstruktur
-- Infrastruktur-Standort
-- Transparenz & Zugriffe
+
+Basierend auf dem [EU Cloud Sovereignty Framework](https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en) mit gewichteten SOV-Kriterien:
+
+| SOV | Kriterium | Gewicht |
+|-----|-----------|---------|
+| SOV-1 | Strategische Souveränität | 15% |
+| SOV-2 | Rechtliche Souveränität | 10% |
+| SOV-3 | Daten- & KI-Souveränität | 10% |
+| SOV-4 | Operative Souveränität | 15% |
+| SOV-5 | Lieferketten-Souveränität | 20% |
+| SOV-6 | Technologie-Souveränität | 15% |
+| SOV-7 | Sicherheits-Souveränität | 10% |
+| SOV-8 | Ökologische Nachhaltigkeit | 5% |
 
 **Leistung & Performance (0-100 Punkte)**
 - Service-Portfolio Umfang

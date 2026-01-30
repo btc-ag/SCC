@@ -5,6 +5,37 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-01-30
+
+### Major Release - EU SEAL-Integration & SOV-Framework
+
+Diese Version integriert die EU SEAL-Kriterien (Sovereignty Effective Assurance Levels) basierend auf dem EU Cloud Sovereignty Framework.
+
+### Added
+- **SEAL-Level System**: 5-stufige Souveränitätsbewertung (SEAL-0 bis SEAL-4) basierend auf Kontrolle-Score
+- **SEAL-Zonen in Matrix**: Visuelle Hintergrundbänder zeigen SEAL-Level-Bereiche
+- **SEAL-Badges**: Kompakte Level-Anzeige in Provider-Cards und Tooltips
+- **SOV-Kriterien (SOV-1 bis SOV-8)**: Detaillierte Souveränitätsziele gem. EU Framework
+- **SOV-Panel**: Slide-in Panel mit detaillierter SOV-Aufschlüsselung pro Provider
+- **SOV-Gewichtung**: EU-konforme Gewichtung der 8 Souveränitätsziele
+- **Provider SOV-Scores**: Individuelle SOV-Bewertungen für alle 14 Provider
+- **Provider SOV-Erklärungen**: Begründungen für jeden SOV-Score pro Provider
+- **Custom Scores Hinweis**: Anzeige auf Compass-Seite wenn individuelle Kriterien angewendet wurden
+- **EU Framework Links**: Direktlinks zum offiziellen EU Cloud Sovereignty Framework Dokument
+
+### Changed
+- **Kontrolle-Berechnung**: Basiert nun auf gewichteten SOV-Scores statt statischen Werten
+- **Tooltip-Design**: Erweitert um SEAL-Level Anzeige mit Icon
+- **Result-Cards**: Header mit SEAL-Badge ergänzt
+- **Kriterien-Seite**: SOV-Sektion mit Provider-Auswahl und Detail-Ansicht
+
+### Technical
+- Neue Datenstruktur: `SOV_WEIGHTS`, `SOV_CRITERIA`, `PROVIDER_SOV_SCORES`, `PROVIDER_SOV_EXPLANATIONS`
+- `calculateControlFromSov()` Funktion für gewichtete Kontrolle-Berechnung
+- `getSealLevel()` Funktion für SEAL-Level Ermittlung
+- `renderSealZones()` in ChartComponent für Matrix-Visualisierung
+- SOV-Panel mit `openSovPanel()` / `closeSovPanel()` Funktionen
+
 ## [2.4.0] - 2026-01-29
 
 ### Changed
@@ -152,6 +183,7 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **3.0.0** (2026-01-30) - EU SEAL-Integration: SOV-Framework, SEAL-Level, SOV-Panel
 - **2.4.0** (2026-01-29) - Code-Modernisierung: Event-Handler, Tabellen-Refactoring, Input-Validierung
 - **2.3.1** (2026-01-29) - Image Optimization: Alt-Texte, Width/Height, Lazy Loading
 - **2.3.0** (2026-01-29) - SEO: Meta Tags, Open Graph, Schema.org, Critical CSS
