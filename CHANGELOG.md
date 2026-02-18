@@ -5,6 +5,13 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.2] - 2026-02-18
+
+### Changed
+- **Framework-Bezeichnung präzisiert**: "gemäß EU-Spezifikation gewichtet" ersetzt durch "orientiert sich an diesem Referenz-Dokument der EU-Kommission"
+- **SEAL-Legend-Hint aktualisiert**: Klarstellung, dass das EU Cloud Sovereignty Framework ein Referenz-Dokument ist, kein formeller Standard
+- **Disclaimer ergänzt** (evaluation-criteria.html): Hinweis auf den ursprünglichen Ausschreibungskontext, laufende BSI/ANSSI-Interpretationen und Empfehlung zur eigenen Anforderungsdefinition bei Beschaffungen
+
 ## [3.1.1] - 2026-02-18
 
 ### Changed
