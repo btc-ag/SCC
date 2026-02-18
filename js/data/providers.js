@@ -397,14 +397,14 @@
             sov8: 'Eigene RZ-Nachhaltigkeit'
         },
         'sap-cloud-infrastructure': {
-            sov1: 'SAP SE mit Sitz in Walldorf, deutsches Unternehmen, börsennotiert ohne Staatsanteil',
-            sov2: 'Deutsches Recht, kein US-Mutterkonzern, kein CLOUD Act – US-Tochter SAP America als Restrisiko',
-            sov3: 'Deutsche Rechenzentren, VS-NfD-Fähigkeit impliziert starke Datenkontrolle – BYOK öffentlich nicht bestätigt',
-            sov4: 'OpenStack-Basis ermöglicht Exit technisch, VS-NfD-Personal im Betrieb – kein öffentlicher Service-Katalog, kein Self-Service, Exit-Planung faktisch eingeschränkt',
-            sov5: 'SAP-eigene Rechenzentren und Leitungswege, OpenStack für SW-Transparenz – keine öffentlichen SBOMs oder Hardware-Lieferantenlisten dokumentiert',
-            sov6: 'OpenStack-basiert und API-first, offen für Drittanwendungen – kein öffentlicher Service-Katalog, keine Preisliste, Vendor Lock-in nicht extern verifikabel',
-            sov7: 'C5 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3, TSI3+ – VS-NfD BSI-Komponentenzulassung und NATO-restricted in Bearbeitung',
-            sov8: 'SAP-eigene Rechenzentren in Deutschland, Nachhaltigkeitsstrategie als DAX-Konzern – konkrete RZ-Energiedaten öffentlich begrenzt verfügbar'
+            sov1: 'SAP SE, Walldorf – börsennotiert, kein Staatsanteil',
+            sov2: 'Deutsches Recht, kein US-Konzern, kein CLOUD Act',
+            sov3: 'Deutsche Rechenzentren, VS-NfD-fähig – BYOK nicht bestätigt',
+            sov4: 'VS-NfD-Personal, OpenStack-Exit möglich – kein Self-Service, kein öffentlicher Katalog',
+            sov5: 'SAP-eigene RZs und Leitungen, OpenStack-Basis – keine öffentlichen SBOMs',
+            sov6: 'OpenStack, API-first – Katalog/Preisliste nicht öffentlich, Lock-in nicht verifikabel',
+            sov7: 'C5 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3 – VS-NfD in Bearbeitung',
+            sov8: 'Eigene RZs in Deutschland, Nachhaltigkeitsstrategie als DAX-Konzern'
         }
     });
 
