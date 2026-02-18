@@ -5,6 +5,13 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1] - 2026-02-18
+
+### Changed
+- **Azure SOV-6 Begründung präzisiert**: `.NET-zentriert` ersetzt durch `Lock-in liegt im Ökosystem (M365, Entra, Power Platform), nicht der Runtime – .NET ist vollständig OSS`
+- **STACKIT SOV-6 Begründung erweitert**: Hinweis ergänzt, dass bei einzelnen Managed Services (z.B. Dremio Enterprise statt Trino) das Potenzial für echte Souveränität noch ungenutzt bleibt
+- **SOV-6 Kriteriendefinition geschärft**: Prinzip ergänzt – Technologie-Souveränität bedeutet nicht, proprietäre Software auf EU-Infrastruktur zu hosten; echte Souveränität entsteht durch offene Technologien ohne Vendor-Abhängigkeit
+
 ## [3.1.0] - 2026-02-18
 
 ### Added
@@ -238,6 +245,7 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **3.1.1** (2026-02-18) - SOV-6 Begründungen präzisiert: Azure Runtime vs. Ökosystem; STACKIT Dremio-Hinweis; Prinzip in Kriterien-Seite
 - **3.1.0** (2026-02-18) - SAP Cloud Infrastructure hinzugefügt; OTC + DELOS Scores korrigiert
 - **3.0.2** (2026-01-30) - Kriterien-Seite: SOV-Sektion in Kontrolle integriert
 - **3.0.1** (2026-01-30) - OTC SOV-Scores Anpassung: Konsistentere Bewertung
