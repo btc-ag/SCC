@@ -272,7 +272,7 @@
             sov3: 'EU-Regionen, BYOK und CMK verfügbar',
             sov4: 'Globaler Support, keine EU-Garantie',
             sov5: 'Proprietäre Hardware, keine Transparenz',
-            sov6: 'Proprietäres Ökosystem, .NET-zentriert',
+            sov6: 'Lock-in liegt im Ökosystem (M365, Entra, Power Platform), nicht der Runtime – .NET ist vollständig OSS',
             sov7: 'ISO 27001, SOC 2, C5-Testat',
             sov8: 'Carbon Negative Pledge 2030'
         },
@@ -322,7 +322,7 @@
             sov3: 'Vollständige Datenhoheit in DE',
             sov4: 'Deutscher Betrieb und Support',
             sov5: 'OpenStack-basiert, EU-Hardware-Fokus',
-            sov6: 'OpenStack-APIs, offene Standards',
+            sov6: 'OpenStack-Basis und offene APIs – Potenzial für echte Souveränität vorhanden. Bei einzelnen Managed Services (z.B. Dremio Enterprise statt Trino) bleibt dieses Potenzial noch ungenutzt',
             sov7: 'C5, ISO 27001, BSI-konform',
             sov8: 'Eigene RZs, hoher Nachhaltigkeitsfokus'
         },
