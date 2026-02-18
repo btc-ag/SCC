@@ -5,6 +5,34 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-02-18
+
+### Added
+- **SAP Cloud Infrastructure (SCI)**: Neuer Provider in der Kategorie EU/Deutsche Anbieter
+  - Ehemals „SAP Converged Cloud" – OpenStack-basierte IaaS für hochsensible und hochskalierbare Workloads
+  - Deutsche Rechenzentren (SAP-Eigentum), 3 Availability Zonen auf SAP-eigenen Leitungswegen
+  - Multi-Tenant, offen für Non-SAP-Workloads
+  - **Einschränkung**: Aktuell kein vollständiger NIST-Public-Cloud-Status (kein öffentlicher Service-Katalog, keine Preisliste, kein Self-Service) – in Bewertung entsprechend berücksichtigt
+  - Kontrolle: 76 (SEAL-3), Leistung: 55
+  - Zertifizierungen: C5 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3, TSI3+, VS-NfD BSI-Komponentenzulassung in Bearbeitung
+  - Quelle: Inoffizielle Produktinformationen (SAP SE); begrenzte öffentliche Dokumentation
+
+### Changed
+- **Open Telekom Cloud SOV-Scores korrigiert** – Konsistenzüberarbeitung:
+  - SOV-1: 75 → 87 (KfW-Staatsanteil bietet strukturellen Übernahmeschutz – Huawei-Risiko betrifft Lieferkette/Betrieb, nicht strategisch-rechtliche Ebene)
+  - SOV-2: 85 → 90 (kein US-Mutterkonzern, CLOUD Act nicht anwendbar – T-Mobile US als Restrisiko)
+  - SOV-3: 80 → 83 (BYOK bestätigt; Huawei-Netzzugriff als Restrisiko für Datenisolation explizit dokumentiert)
+  - SOV-8: 65 → 76 (100% Ökostrom in deutschen Betrieben seit 2021, starkes DAX-Nachhaltigkeitsreporting)
+  - OTC Kontrolle: ~67 → 70 (bleibt SEAL-2)
+- **Microsoft DELOS Cloud korrigiert**:
+  - SOV-4: 90 → 82 (kein NIST-Public-Cloud-Zugang – nur für Verwaltung zugänglich, kein Self-Service, Exit-Planung außerhalb des Verwaltungskontexts eingeschränkt)
+  - Leistung: 65 → 60 (eingeschränkte öffentliche Verfügbarkeit, analog zur SAP SCI-Bewertungslogik)
+  - DELOS Kontrolle: ~74 → 72 (bleibt SEAL-2)
+
+### Fixed
+- OTC SOV-Erklärungen präzisiert: SOV-1/2 unterscheiden nun klar zwischen strategisch-rechtlicher und operativer Ebene; SOV-8 mit konkreten Nachhaltigkeitsdaten belegt
+- DELOS SOV-4 Erklärung: Einschränkung durch fehlenden öffentlichen Zugang explizit dokumentiert
+
 ## [3.0.2] - 2026-01-30
 
 ### Changed
@@ -210,6 +238,7 @@ This is a significant release with major improvements to functionality and user 
 
 ## Version History
 
+- **3.1.0** (2026-02-18) - SAP Cloud Infrastructure hinzugefügt; OTC + DELOS Scores korrigiert
 - **3.0.2** (2026-01-30) - Kriterien-Seite: SOV-Sektion in Kontrolle integriert
 - **3.0.1** (2026-01-30) - OTC SOV-Scores Anpassung: Konsistentere Bewertung
 - **3.0.0** (2026-01-30) - EU SEAL-Integration: SOV-Framework, SEAL-Level, SOV-Panel

@@ -603,8 +603,8 @@
         // SOV-Panel initialisieren
         initSovPanel();
 
-        // Session prüfen
-        checkSession();
+        // Direkt Vollversion initialisieren (Login deaktiviert)
+        initializeCompass(false);
     }
 
     /**
