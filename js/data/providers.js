@@ -220,7 +220,7 @@
             sov1: 60, sov2: 85, sov3: 90, sov4: 85, sov5: 50, sov6: 45, sov7: 90, sov8: 70
         },
         'microsoft-delos-cloud': {
-            sov1: 75, sov2: 95, sov3: 95, sov4: 90, sov5: 55, sov6: 40, sov7: 95, sov8: 65
+            sov1: 75, sov2: 95, sov3: 95, sov4: 82, sov5: 55, sov6: 40, sov7: 95, sov8: 65
         },
         'stackit': {
             sov1: 100, sov2: 100, sov3: 95, sov4: 85, sov5: 70, sov6: 75, sov7: 90, sov8: 85
@@ -229,7 +229,7 @@
             sov1: 90, sov2: 95, sov3: 90, sov4: 80, sov5: 60, sov6: 65, sov7: 90, sov8: 75
         },
         'open-telekom-cloud': {
-            sov1: 75, sov2: 85, sov3: 80, sov4: 65, sov5: 40, sov6: 65, sov7: 85, sov8: 65
+            sov1: 87, sov2: 90, sov3: 83, sov4: 65, sov5: 40, sov6: 65, sov7: 85, sov8: 76
         },
         'openstack-private-cloud': {
             sov1: 100, sov2: 100, sov3: 100, sov4: 100, sov5: 70, sov6: 100, sov7: 75, sov8: 50
@@ -245,6 +245,9 @@
         },
         'aws-outpost': {
             sov1: 20, sov2: 40, sov3: 65, sov4: 55, sov5: 30, sov6: 35, sov7: 70, sov8: 55
+        },
+        'sap-cloud-infrastructure': {
+            sov1: 83, sov2: 90, sov3: 83, sov4: 78, sov5: 65, sov6: 60, sov7: 90, sov8: 76
         }
     });
 
@@ -307,7 +310,7 @@
             sov1: 'Deutsche Treuhänderschaft (SAP/Arvato)',
             sov2: 'Kein US-Zugriff, deutsches Recht',
             sov3: 'Keys bei deutschem Treuhänder',
-            sov4: 'Betrieb durch deutsche Partner',
+            sov4: 'Betrieb durch deutsche Partner (SAP/Arvato), aber kein NIST-Public-Cloud-Zugang – nur für Verwaltung, Exit außerhalb dieses Rahmens eingeschränkt',
             sov5: 'MS-Technologie, aber DE-Kontrolle',
             sov6: 'Azure-Stack, proprietär',
             sov7: 'C5, BSI-Grundschutz, VS-NfD',
@@ -334,14 +337,14 @@
             sov8: 'Deutsche RZs, Nachhaltigkeitsinitiativen, erneuerbare Energie'
         },
         'open-telekom-cloud': {
-            sov1: 'Deutsche Telekom mit ~30% Staatsanteil, Schutz vor Übernahmen',
-            sov2: 'Deutsches Recht, DSGVO-konform, kein US-Zugriff',
-            sov3: 'EU-Datenresidenz, BYOK verfügbar, Verschlüsselung',
+            sov1: 'Deutsche Telekom mit ~30% Staatsanteil (KfW) – struktureller Schutz vor Non-EU-Übernahmen',
+            sov2: 'Deutsches Recht, DSGVO-konform, kein US-Mutterkonzern – kein CLOUD Act; T-Mobile US als Restrisiko',
+            sov3: 'EU-Datenresidenz, BYOK bestätigt, Verschlüsselung – Huawei-Netzzugriff als Restrisiko für Datenisolation',
             sov4: 'Telekom-Betrieb, aber Huawei L2/L3-Support',
             sov5: 'Huawei-Hardware und -Software, kritisch für Lieferkette',
             sov6: 'OpenStack-basiert, offene APIs und Standards',
             sov7: 'C5-Testat, ISO 27001, BSI-konform',
-            sov8: 'Telekom-Nachhaltigkeitsstandards, grüne Energie'
+            sov8: '100% Ökostrom in deutschen Betrieben seit 2021, starke Klimaziele als DAX-Konzern'
         },
         'openstack-private-cloud': {
             sov1: 'Vollständige eigene Kontrolle',
@@ -392,6 +395,16 @@
             sov6: 'Proprietäre AWS-Services',
             sov7: 'AWS-Sicherheitsstandards lokal',
             sov8: 'Eigene RZ-Nachhaltigkeit'
+        },
+        'sap-cloud-infrastructure': {
+            sov1: 'SAP SE mit Sitz in Walldorf, deutsches Unternehmen, börsennotiert ohne Staatsanteil',
+            sov2: 'Deutsches Recht, kein US-Mutterkonzern, kein CLOUD Act – US-Tochter SAP America als Restrisiko',
+            sov3: 'Deutsche Rechenzentren, VS-NfD-Fähigkeit impliziert starke Datenkontrolle – BYOK öffentlich nicht bestätigt',
+            sov4: 'OpenStack-Basis ermöglicht Exit technisch, VS-NfD-Personal im Betrieb – kein öffentlicher Service-Katalog, kein Self-Service, Exit-Planung faktisch eingeschränkt',
+            sov5: 'SAP-eigene Rechenzentren und Leitungswege, OpenStack für SW-Transparenz – keine öffentlichen SBOMs oder Hardware-Lieferantenlisten dokumentiert',
+            sov6: 'OpenStack-basiert und API-first, offen für Drittanwendungen – kein öffentlicher Service-Katalog, keine Preisliste, Vendor Lock-in nicht extern verifikabel',
+            sov7: 'C5 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3, TSI3+ – VS-NfD BSI-Komponentenzulassung und NATO-restricted in Bearbeitung',
+            sov8: 'SAP-eigene Rechenzentren in Deutschland, Nachhaltigkeitsstrategie als DAX-Konzern – konkrete RZ-Energiedaten öffentlich begrenzt verfügbar'
         }
     });
 
@@ -476,7 +489,7 @@
         {
             id: 'microsoft-delos-cloud',
             name: 'Microsoft DELOS Cloud',
-            performance: 65,
+            performance: 60,
             color: CATEGORY_COLORS[PROVIDER_CATEGORIES.SOVEREIGN],
             category: PROVIDER_CATEGORIES.SOVEREIGN,
             description: 'Speziell für deutsche Verwaltung mit vollständiger Datenhoheit ohne US-Zugriffsmöglichkeiten.'
@@ -504,6 +517,14 @@
             color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU],
             category: PROVIDER_CATEGORIES.EU,
             description: 'Deutsche Telekom Cloud basierend auf OpenStack für regulierte Branchen.'
+        },
+        {
+            id: 'sap-cloud-infrastructure',
+            name: 'SAP Cloud Infrastructure',
+            performance: 55,
+            color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU],
+            category: PROVIDER_CATEGORIES.EU,
+            description: 'IaaS-Cloud der SAP SE auf OpenStack-Basis für hochsensible Workloads in deutschen Rechenzentren – aktuell eingeschränkt öffentlich verfügbar.'
         },
         {
             id: 'openstack-private-cloud',
@@ -574,14 +595,14 @@
         full: [
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.HYPERSCALER], text: '<strong>Hyperscaler</strong> (AWS, Azure, GCP, Oracle)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.SOVEREIGN], text: '<strong>Souveräne Clouds</strong> (AWS European, DELOS)' },
-            { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU], text: '<strong>Deutsche/EU Anbieter</strong> (STACKIT, IONOS, OTC)' },
+            { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU], text: '<strong>Deutsche/EU Anbieter</strong> (STACKIT, IONOS, OTC, SAP SCI)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.PRIVATE], text: '<strong>Private Cloud</strong> (VMware, OpenStack)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.HYBRID], text: '<strong>Hybrid-Lösungen</strong> (Outposts, Stack HCI, Dedicated)' }
         ],
         anonymous: [
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.HYPERSCALER], text: '<strong>Hyperscaler</strong> (H1, H2, H3, H4)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.SOVEREIGN], text: '<strong>Souveräne Clouds</strong> (S1, S2)' },
-            { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU], text: '<strong>Deutsche/EU Anbieter</strong> (E1, E2, E3)' },
+            { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU], text: '<strong>Deutsche/EU Anbieter</strong> (E1, E2, E3, E4)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.PRIVATE], text: '<strong>Private Cloud</strong> (P1, P2)' },
             { color: CATEGORY_COLORS[PROVIDER_CATEGORIES.HYBRID], text: '<strong>Hybrid-Lösungen</strong> (Y1, Y2, Y3)' }
         ]
