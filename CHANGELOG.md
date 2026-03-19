@@ -5,6 +5,13 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2026-03-19
+
+### Changed
+- **AWS ESC**: Beschreibung auf GA-Status (15.01.2026) aktualisiert; SOV-7-Text um vollständiges Zertifizierungspaket ergänzt (SOC 2 Type 1, BSI C5, ISO 27001/17/18/27701/22301/20000/9001)
+- **Microsoft DELOS Cloud**: SOV-4-Text um zweites Ops-Center Leipzig ergänzt (Geo-Redundanz vollständig seit Frühjahr 2026)
+- **Open Telekom Cloud**: Beschreibung auf Industrial AI Cloud (Feb 2026, NVIDIA Blackwell, größte souveräne AI-Infrastruktur Europas) und Feature-Parity-Roadmap aktualisiert
+
 ## [3.1.3] - 2026-02-20
 
 ### Fixed

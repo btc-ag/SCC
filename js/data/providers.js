@@ -303,14 +303,14 @@
             sov4: 'EU-Personal für Betrieb und Support',
             sov5: 'AWS-Hardware, aber EU-Kontrolle',
             sov6: 'AWS-Services, proprietär',
-            sov7: 'C5, ISO 27001, BSI-konform',
+            sov7: 'SOC 2 Type 1, BSI C5, ISO 27001/17/18/27701/22301/20000/9001 – seit Januar 2026 vollständig zertifiziert',
             sov8: 'EU-Rechenzentren, erneuerbare Energie'
         },
         'microsoft-delos-cloud': {
             sov1: 'Deutsche Treuhänderschaft (SAP/Arvato)',
             sov2: 'Kein US-Zugriff, deutsches Recht',
             sov3: 'Keys bei deutschem Treuhänder',
-            sov4: 'Betrieb durch deutsche Partner (SAP/Arvato), aber kein NIST-Public-Cloud-Zugang – nur für Verwaltung, Exit außerhalb dieses Rahmens eingeschränkt',
+            sov4: 'Betrieb durch deutsche Partner (SAP/Arvato), georedundant (zwei Ops-Center DE seit Frühjahr 2026), aber kein NIST-Public-Cloud-Zugang – nur für Verwaltung, Exit außerhalb dieses Rahmens eingeschränkt',
             sov5: 'MS-Technologie, aber DE-Kontrolle',
             sov6: 'Azure-Stack, proprietär',
             sov7: 'C5, BSI-Grundschutz, VS-NfD',
@@ -484,7 +484,7 @@
             performance: 90,
             color: CATEGORY_COLORS[PROVIDER_CATEGORIES.SOVEREIGN],
             category: PROVIDER_CATEGORIES.SOVEREIGN,
-            description: 'Auf hohe Überlebensfähigkeit in geopolitischen Krisen ausgerichtet mit voller europäischer Souveränität.'
+            description: 'Seit Januar 2026 in GA: Vollständig unabhängige EU-Cloud mit explizitem CLOUD Act-Schutz, BSI C5 und 7 ISO-Zertifizierungen bereits erreicht.'
         },
         {
             id: 'microsoft-delos-cloud',
@@ -516,7 +516,7 @@
             performance: 55,
             color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU],
             category: PROVIDER_CATEGORIES.EU,
-            description: 'Deutsche Telekom Cloud basierend auf OpenStack für regulierte Branchen.'
+            description: 'Deutsche Telekom Cloud (OpenStack) mit Industrial AI Cloud (NVIDIA Blackwell, größte souveräne AI-Infrastruktur Europas seit Feb 2026) – 80% Hyperscaler-Feature-Parity, 100% bis Ende 2026 angekündigt.'
         },
         {
             id: 'sap-cloud-infrastructure',
