@@ -512,7 +512,7 @@
         },
         {
             id: 'open-telekom-cloud',
-            name: 'Open Telekom Cloud',
+            name: 'T Cloud Public',
             performance: 55,
             color: CATEGORY_COLORS[PROVIDER_CATEGORIES.EU],
             category: PROVIDER_CATEGORIES.EU,

@@ -31,7 +31,7 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 ### EU-Anbieter
 - STACKIT (Schwarz IT)
 - IONOS Cloud (United Internet)
-- Open Telekom Cloud (T-Systems)
+- T Cloud Public (Deutsche Telekom, ehem. Open Telekom Cloud)
 
 ### Private Cloud
 - OpenStack Private Cloud
