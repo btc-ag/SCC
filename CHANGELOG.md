@@ -5,6 +5,11 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.1] - 2026-04-16
+
+### Changed
+- **SAP Cloud Infrastructure**: SOV-7-Text um neu erworbene Zertifizierungen ergänzt: ISO 27001 auf Basis IT-Grundschutz (BSI-zertifiziert April 2026, RZs Walldorf/St. Leon-Rot), SOC 1 Typ II, SOC 2 Typ II – Quelle: SAP-Pressemitteilung April 2026
+
 ## [3.2.0] - 2026-03-19
 
 ### Changed

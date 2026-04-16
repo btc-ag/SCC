@@ -403,7 +403,7 @@
             sov4: 'VS-NfD-Personal, OpenStack-Exit möglich – kein Self-Service, kein öffentlicher Katalog',
             sov5: 'SAP-eigene RZs und Leitungen, OpenStack-Basis – keine öffentlichen SBOMs',
             sov6: 'OpenStack, API-first – Katalog/Preisliste nicht öffentlich, Lock-in nicht verifikabel',
-            sov7: 'C5 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3 – VS-NfD in Bearbeitung',
+            sov7: 'ISO 27001 auf Basis IT-Grundschutz (April 2026), C5 Typ II, SOC 1/2 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3 – VS-NfD in Bearbeitung',
             sov8: 'Eigene RZs in Deutschland, Nachhaltigkeitsstrategie als DAX-Konzern'
         }
     });
