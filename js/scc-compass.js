@@ -560,7 +560,9 @@
         const items = sources.map(s => `
             <li class="provider-source-item">
                 <i class="fa-solid fa-link"></i>
-                <a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title}</a>
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer"
+                   data-source-provider="${providerId}"
+                   data-source-host="${(() => { try { return new URL(s.url).host; } catch (e) { return ''; } })()}">${s.title}</a>
             </li>
         `).join('');
         return `
@@ -582,6 +584,14 @@
         const content = document.getElementById('sovPanelContent');
 
         if (!panel || !overlay) return;
+
+        // Track: welche Provider werden geöffnet?
+        const sealForTrack = SCC_DATA.getSealLevel ? SCC_DATA.getSealLevel(provider.control) : null;
+        track('open-sov-panel', {
+            provider: provider.id,
+            seal: sealForTrack ? sealForTrack.level : null,
+            mode: SCC_DATA.getAuditMode ? SCC_DATA.getAuditMode() : 'c1'
+        });
 
         // Header aktualisieren
         providerName.textContent = provider.name;
@@ -956,6 +966,8 @@
                     b.classList.toggle('is-active', active);
                     b.setAttribute('aria-checked', active ? 'true' : 'false');
                 });
+                // Track: BSI Audit-Strenge gewechselt
+                track('audit-mode', { mode });
                 // Komplett-Neuberechnung: Provider-Liste, Chart, Result-Cards
                 reloadProviders();
                 // Falls SOV-Panel offen ist, schließen — Werte könnten verschoben sein
@@ -1029,14 +1041,27 @@
     /**
      * Event-Listener Setup
      */
+    // Umami-Tracking-Helfer (no-op falls Umami nicht geladen)
+    function track(eventName, data) {
+        if (typeof window.umami !== 'undefined' && typeof window.umami.track === 'function') {
+            try { window.umami.track(eventName, data); } catch (e) { /* ignore */ }
+        }
+    }
+
     function setupEventListeners() {
-        // Slider mit RAF-Throttling
+        // Slider mit RAF-Throttling + debounced Tracking
         if (elements.slider) {
+            let sliderTrackTimeout = null;
             elements.slider.addEventListener('input', (e) => {
                 if (rafId) cancelAnimationFrame(rafId);
                 rafId = requestAnimationFrame(() => {
                     updateVisualization(parseInt(e.target.value));
                 });
+                // Tracking nur 800ms nach letztem Input (sonst zu viel Rauschen)
+                clearTimeout(sliderTrackTimeout);
+                sliderTrackTimeout = setTimeout(() => {
+                    track('slider-change', { value: parseInt(e.target.value) });
+                }, 800);
             });
         }
 
@@ -1132,6 +1157,17 @@
 
         // Audit-Strenge-Toggle (BSI C3A C1/C2) initialisieren
         initAuditModeToggle();
+
+        // Outbound-Klicks auf Provider-Quellen tracken (Event-Delegation)
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest('a.provider-source-item, .provider-source-item a, a[data-source-provider]');
+            if (a && a.dataset.sourceProvider) {
+                track('source-click', {
+                    provider: a.dataset.sourceProvider,
+                    host: a.dataset.sourceHost || ''
+                });
+            }
+        });
 
         // Direkt Vollversion initialisieren (Login deaktiviert)
         initializeCompass(false);
