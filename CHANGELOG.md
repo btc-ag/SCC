@@ -5,6 +5,77 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-04-27
+
+Diese Major-Release stellt den Sovereign Cloud Compass auf eine vollständig **auditierbare**
+Bewertungsbasis um — kein Wert im Kontrolle-Score ist mehr eine subjektive Experten-Schätzung.
+
+### Added — Datenmodell & Methodik
+- **BSI C3A Integration:** Vollständige Operationalisierung des EU Cloud Sovereignty Framework gemäß BSI-Publikation *Criteria enabling Cloud Computing Autonomy (C3A) v1.0* vom 27.04.2026. Rund 30 prüfbare Kriterien aus den Kategorien SOV-1 bis SOV-6, mit C1/C2-Varianten (EU vs. Deutschland) sowie Additional Criteria (AC).
+- **SOV-7 Compliance-Katalog** (`js/data/sov7-compliance.js`): 10 prüfbare Sicherheits-/Compliance-Kriterien (`SOV-7-01` bis `SOV-7-10`) analog zur C3A-Struktur — schließt die Lücke, die BSI C3A bei SOV-7 (Security & Compliance) bewusst lässt. Kriterien orientieren sich an ISO/IEC 27001, BSI IT-Grundschutz, BSI C5, ISO 27017/27018/27701, SOC 2 Type 2, KRITIS, NIS2 und EU-/DE-SOC.
+- **Pro-Provider-Quellenbelege:** Belastbare URL-Quellen je Provider (Compliance-Seiten, Pressemitteilungen, Zertifikate) als first-class Daten unter `getProviderSources(id)`.
+- **Pro-Provider-C3A-Bewertung:** Pro Kriterium `pass | partial | fail | unknown`, optional inkl. Hinweis und gewählter Variante (C1/C2). Aggregation nach SOV-Bucket über `aggregateC3A()` und `getProviderC3AScores(id)`.
+- **Pro-Provider-SOV-7-Bewertung:** Pro Kriterium `pass | partial | fail | unknown` mit Begründungstext, Aggregation über `aggregateSov7()` und `getProviderSov7Scores(id)`.
+- **Oracle EU Sovereign Cloud** als 16. Provider hinzugefügt (Frankfurt + Madrid, Oracle EMEA als operative Tochter mit vertraglichem CLOUD-Act-Schutz).
+- **`deVariant`-Mechanik in C3A-Kriterien:** SOV-3-01 hat 5 Varianten (C1–C5); C4 (DE customer data) ist die korrekte DE-Variante, nicht C2. `meta.deVariant: 'C4'` macht das explizit, sodass deutsche Provider mit C4-Annotation im C2-Modus nicht fälschlich heruntergestuft werden.
+
+### Added — UI & Interaktion
+- **Audit-Strenge-Toggle** im Card-Header der Hauptseite: Wechsel zwischen **EU (C1)** und **Deutschland (C2)** mit `localStorage`-Persistenz. Bei C2 werden Kriterien ohne DE-Variante auf 50 Punkte reduziert (BSI-konform). Komplett-Re-Render aller Visualisierungen bei Wechsel.
+- **Hover-Popup auf Matrix-Punkten:** Spider-Chart-Karte mit 6-Speichen-Stern (SOV-1…6) plus SEAL-Badge, C3A-Badge, Kontrolle/Leistung-Metriken. Smartes Positioning (rechts/links/oben/unten je nach Platz). Klick auf Punkt öffnet Sov-Panel.
+- **Sov-Panel komplett neu aufgebaut** (`openSovPanel`):
+  - Hero mit Spider-Grafik + Kontrolle/Leistung-Boxen
+  - Statischer Header mit SEAL-, C3A- und Gesamt-Score-Badges
+  - Ausklappbarer Erklär-Block „Wie unterscheiden sich Kontrolle und C3A?" mit verlinkter BSI- und EU-CSF-Methodik plus Gewichtungs-Tabelle
+  - **Konsolidierte SOV-Liste**: 8 ausklappbare Reihen statt zwei separater Drilldown-Blöcke. Pro Zeile Quellen-Tag (`C3A` / `SOV-7` / `Experten`). SOV-1…6 zeigen die zugehörigen C3A-Einzelkriterien, SOV-7 zeigt den Compliance-Katalog, SOV-8 zeigt einen Experten-Hinweis.
+  - **C2-Downgrade-Visualisierung pro Kriterium**: durchgestrichene C1-Badge, orange Note-Box mit Score-Effekt-Hinweis (z. B. „C1 reicht für DE nicht — dieses Kriterium: 50 statt 100").
+  - Quellen-Block mit allen Provider-URLs am Ende
+- **Berechnungsmethodik in evaluation-criteria.html** ausführlich dokumentiert mit 4-Stufen-Pyramide (Einzelkriterium → SOV-Score → Kontrolle/C3A → Gesamt-Score), konkreter Beispiel-Tabelle (AWS ESC SOV-1: 88 vs. 75) und C1/C2-Erklärblock.
+- **Glossar-Box auf beiden Seiten** mit drei Frameworks (EU CSF, SEAL, BSI C3A) — auf der Hauptseite zugeklappt, auf der Methodik-Seite aufgeklappt.
+- **Hinweis-Footer im Sov-Panel** mit zwei Quellen-Links (EU CSF + BSI C3A v1.0).
+
+### Erweiterte JavaScript-Modul-API (`window.SCC_DATA`)
+Reine Browser-Inkapsulation der Daten-Module — keine HTTP/REST-Schnittstelle. Wird von den UI-Komponenten konsumiert (`scc-compass.js`, `chart.js`, `scc-criteria-page.js`).
+- `C3A_CRITERIA`, `C3A_RESULTS`, `C3A_VERSION`, `getProviderC3A`, `getProviderC3AScores`, `getProviderSources`, `getProviderAssessment`
+- `SOV7_VERSION`, `SOV7_CRITERIA`, `SOV7_RESULT_SCORE`, `SOV8_EXPERT_SCORES`, `getProviderSov7`, `getProviderSov7Scores`, `computeProviderSovScores`
+- `getAuditMode`, `setAuditMode`, `getProviders` für mode-abhängige Provider-Listen
+- `window.SCC_HOVER` und `window.SCC_OPEN_PANEL` als globale Hooks für `chart.js` (Hover-/Klick-Integration)
+- **Plan-Dokumentation:** `docs/superpowers/plans/2026-04-27-scc-v4-c3a-integration.md` und `docs/superpowers/plans/2026-04-27-scc-v4-hybrid-control.md`.
+
+### Changed (BREAKING — methodisch)
+- **Kontrolle-Score-Berechnung umgestellt.** Bisher waren SOV-1…8 subjektive Experten-Schätzungen; ab v4.0.0:
+  - **SOV-1…6** werden aus der **BSI-C3A**-Aggregation berechnet (`aggregateC3A()`).
+  - **SOV-7** wird aus dem **neuen 10-Punkte-Compliance-Katalog** berechnet (`aggregateSov7()`).
+  - **SOV-8** (Nachhaltigkeit) bleibt Experten-Wert in `SOV8_EXPERT_SCORES` — BSI-Mandat deckt SOV-8 nicht ab.
+  - Gewichtung gemäß EU CSF (0.15/0.10/0.10/0.15/0.20/0.15/0.10/0.05) bleibt unverändert.
+- **Werte verschieben sich** durch die methodische Umstellung. Auswahl beobachteter Wechsel:
+  - AWS European Sovereign Cloud: 69 → 77 (SEAL-2 → **SEAL-3**)
+  - Microsoft DELOS Cloud: 72 → 76 (SEAL-2 → **SEAL-3**)
+  - IONOS Cloud: 79 → 87 (SEAL-3, deutlich höhere Position)
+  - Google Dedicated Cloud: 64 → 53 (SEAL-2 → **SEAL-1**)
+  - AWS Outpost: 43 → 32 (SEAL-1 → **SEAL-0**)
+  - VMware Private Cloud: 74 → 67 (SEAL-2, niedriger)
+
+### Changed (Refactoring)
+- **Refactoring `js/data/providers.js`:** Die monolithische Datei (674 LOC) wurde in fokussierte Module aufgeteilt:
+  - `js/data/sov-framework.js` – EU CSF, SEAL-Levels, SOV-1…8 Kriterien, Gewichte
+  - `js/data/c3a-framework.js` – BSI C3A v1.0 (~30 Kriterien, Aggregation)
+  - `js/data/sov7-compliance.js` – SOV-7 Compliance-Katalog (10 Kriterien, Aggregation)
+  - `js/data/providers-base.js` – Provider-Stammdaten und Kategorisierung
+  - `js/data/provider-assessments.js` – pro Provider: C3A-Bewertung, SOV-7-Bewertung, Quellen, Erklärungen + zentrale `computeProviderSovScores()`-Funktion
+  - `js/data/providers.js` – schlanker Aggregator-Layer, bündelt alles unter `window.SCC_DATA`
+- **Script-Loading-Reihenfolge** in `index.html` und `evaluation-criteria.html` an die neue Modulstruktur angepasst.
+
+### Removed
+- Statische `sov: { sov1..sov8 }`-Blöcke in `ASSESSMENTS` (Experten-Schätzungen) entfallen vollständig. SOV-Werte werden ausschließlich dynamisch aus den auditierbaren Quellen (C3A + SOV-7 + SOV-8) berechnet.
+
+### Migration
+- **Keine Breaking Changes für UI-Konsumenten:** `window.SCC_DATA` exportiert weiterhin alle bisherigen Felder und Funktionen. `scc-compass.js`, `chart.js` und `scc-criteria-page.js` mussten nicht angepasst werden — der Vertrag von `getProviderSovScores(id)` bleibt `{sov1…sov8}`.
+- Eigene Skripte gegen die alten Experten-Werte sollten neu validiert werden, da die Werte jetzt belegbar statt geschätzt sind.
+
+### Notes
+- **Methodische Begründung:** Das BSI hat die Trennung explizit so vorgesehen: *„C3A presupposes that the cloud service provider meets the C5 criteria"* — Sicherheits-/Compliance-Aspekte werden ausdrücklich nicht in C3A geprüft, sondern über C5/IT-Grundschutz. Der neue SOV-7-Katalog schließt diese Lücke konsistent.
+- Der angekündigte **EU Cloud and AI Development Act (CADA)** könnte Teile von C3A im Mai 2026 in verbindliche Rechtsnormen überführen.
+
 ## [3.2.1] - 2026-04-16
 
 ### Changed

@@ -86,6 +86,7 @@
     function createPointElement(provider, index) {
         const point = document.createElement('div');
         point.className = 'provider-point';
+        point.style.cursor = 'pointer';
 
         if (index === 0) {
             point.classList.add('winner');
@@ -100,15 +101,18 @@
         point.style.width = `${size}px`;
         point.style.height = `${size}px`;
         point.style.zIndex = CONFIG.Z_INDEX_BASE - index;
+        point.setAttribute('aria-label', provider.name);
+        point.setAttribute('role', 'button');
+        point.setAttribute('tabindex', '0');
 
-        // Tooltip mit SEAL-Info
-        const tooltip = document.createElement('div');
-        tooltip.className = 'provider-tooltip';
-
+        // Spider-Hover-Popup (aus scc-compass.js): groß, mit allen Details
+        // Fallback (Mini-Tooltip) bleibt für den Fall, dass SCC_HOVER noch nicht geladen ist
+        const fallbackTooltip = document.createElement('div');
+        fallbackTooltip.className = 'provider-tooltip';
         const { getSealLevel } = getSealData();
         if (getSealLevel) {
             const seal = getSealLevel(provider.control);
-            tooltip.innerHTML = `
+            fallbackTooltip.innerHTML = `
                 <strong>${provider.name}</strong>
                 <span class="tooltip-score">Score: ${provider.score.toFixed(1)}</span>
                 <span class="tooltip-seal seal-color-${seal.level}">
@@ -116,10 +120,34 @@
                 </span>
             `;
         } else {
-            tooltip.textContent = `${provider.name} (Score: ${provider.score.toFixed(1)})`;
+            fallbackTooltip.textContent = `${provider.name} (Score: ${provider.score.toFixed(1)})`;
         }
+        point.appendChild(fallbackTooltip);
 
-        point.appendChild(tooltip);
+        // Hover: Spider-Popup einblenden, Mini-Tooltip ausblenden
+        point.addEventListener('mouseenter', () => {
+            if (window.SCC_HOVER) {
+                window.SCC_HOVER.show(provider, point);
+                fallbackTooltip.style.display = 'none';
+            }
+        });
+        point.addEventListener('mouseleave', () => {
+            if (window.SCC_HOVER) window.SCC_HOVER.hide();
+            fallbackTooltip.style.display = '';
+        });
+
+        // Klick: Sov-Detail-Panel öffnen (gleiche Aktion wie auf den Result-Cards)
+        point.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (window.SCC_HOVER) window.SCC_HOVER.hide();
+            if (window.SCC_OPEN_PANEL) window.SCC_OPEN_PANEL(provider);
+        });
+        point.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (window.SCC_OPEN_PANEL) window.SCC_OPEN_PANEL(provider);
+            }
+        });
 
         return point;
     }

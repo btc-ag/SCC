@@ -243,12 +243,18 @@ class SCCCriteriaPage {
 
         const sovCriteria = window.SCC_DATA?.SOV_CRITERIA;
 
+        const c3aCriteria = window.SCC_DATA?.C3A_CRITERIA;
+        const c3aResultsMeta = window.SCC_DATA?.C3A_RESULTS;
+
         const items = sortedProviders.map(provider => {
             const score = this.getEffectiveScore(provider.id, 'control');
             const isCustom = this.hasCustomScores(provider.id);
             const seal = window.SCC_DATA?.getSealLevel?.(score);
             const sovScores = window.SCC_DATA?.getProviderSovScores?.(provider.id);
             const sovExplanations = window.SCC_DATA?.getProviderSovExplanations?.(provider.id);
+            const c3aAssessment = window.SCC_DATA?.getProviderC3A?.(provider.id);
+            const c3aScores = window.SCC_DATA?.getProviderC3AScores?.(provider.id);
+            const sources = window.SCC_DATA?.getProviderSources?.(provider.id) || [];
 
             // SOV-Details HTML
             let sovDetailsHtml = '';
@@ -275,6 +281,16 @@ class SCCCriteriaPage {
                 }).join('');
             }
 
+            // C3A-Block HTML
+            const c3aHtml = this.buildC3ABlock(provider.id, c3aCriteria, c3aResultsMeta, c3aAssessment, c3aScores);
+            const sourcesHtml = this.buildSourcesBlock(sources);
+
+            const c3aBadge = c3aScores
+                ? `<span class="c3a-badge c3a-badge-${c3aScores.total >= 75 ? 'high' : c3aScores.total >= 50 ? 'medium' : 'low'}" title="BSI C3A v1.0 – aggregierter Score über SOV-1…6">
+                       <i class="fa-solid fa-circle-check"></i> C3A ${c3aScores.total}
+                   </span>`
+                : '';
+
             return `
                 <div class="sov-accordion-item ${isCustom ? 'custom' : ''}" data-provider-id="${provider.id}">
                     <div class="sov-accordion-header" role="button" tabindex="0" aria-expanded="false">
@@ -287,6 +303,7 @@ class SCCCriteriaPage {
                         </div>
                         <div class="sov-accordion-score-group">
                             ${seal ? `<span class="seal-badge seal-badge-${seal.level}"><i class="fa-solid fa-shield-halved"></i> ${seal.shortLabel}</span>` : ''}
+                            ${c3aBadge}
                             <div class="sov-accordion-score" style="background: ${provider.color}20; color: ${provider.color}; border-color: ${provider.color}">
                                 ${score}
                             </div>
@@ -300,6 +317,8 @@ class SCCCriteriaPage {
                         <div class="sov-accordion-details">
                             ${sovDetailsHtml || '<p class="sov-no-data">Keine SOV-Daten verfügbar</p>'}
                         </div>
+                        ${c3aHtml}
+                        ${sourcesHtml}
                     </div>
                 </div>
             `;
@@ -329,6 +348,110 @@ class SCCCriteriaPage {
                 this.openEditModal(btn.dataset.providerId);
             });
         });
+    }
+
+    /**
+     * Erzeugt den C3A-Block (BSI-Bewertung pro Provider)
+     */
+    buildC3ABlock(providerId, c3aCriteria, c3aResultsMeta, assessment, scores) {
+        if (!c3aCriteria || !assessment || !scores) return '';
+
+        // Pro SOV-Kategorie: aggregierter Score-Bar + ausklappbare Kriterien-Liste
+        const sovGroups = {};
+        for (const [id, meta] of Object.entries(c3aCriteria)) {
+            if (!sovGroups[meta.sov]) sovGroups[meta.sov] = [];
+            sovGroups[meta.sov].push({ id, ...meta });
+        }
+
+        const sovLabels = {
+            sov1: 'Strategic', sov2: 'Legal', sov3: 'Data',
+            sov4: 'Operational', sov5: 'Supply Chain', sov6: 'Technology'
+        };
+
+        const groupBlocks = Object.entries(sovGroups).map(([sovKey, criteria]) => {
+            const aggScore = scores[sovKey] ?? 0;
+            const cls = aggScore >= 75 ? 'high' : aggScore >= 50 ? 'medium' : 'low';
+
+            const criteriaList = criteria.map(c => {
+                const a = assessment[c.id];
+                if (!a) return '';
+                const meta = c3aResultsMeta[a.result.toUpperCase()] || c3aResultsMeta.UNKNOWN;
+                const variantBadge = a.variant ? `<span class="c3a-variant">${a.variant}</span>` : '';
+                const note = a.note ? `<span class="c3a-criterion-note">${a.note}</span>` : '';
+                return `
+                    <li class="c3a-criterion c3a-criterion-${a.result}">
+                        <i class="fa-solid ${meta.icon}" style="color: ${meta.color}"></i>
+                        <span class="c3a-criterion-id">${c.id}</span>
+                        <span class="c3a-criterion-name">${c.name}</span>
+                        ${variantBadge}
+                        ${note}
+                    </li>
+                `;
+            }).join('');
+
+            return `
+                <details class="c3a-sov-group" data-sov="${sovKey}">
+                    <summary class="c3a-sov-summary">
+                        <span class="c3a-sov-label">${sovKey.toUpperCase()} ${sovLabels[sovKey]}</span>
+                        <span class="c3a-sov-count">${criteria.length} Kriterien</span>
+                        <span class="c3a-sov-score c3a-sov-score-${cls}">${aggScore}</span>
+                        <i class="fa-solid fa-chevron-down c3a-chevron"></i>
+                    </summary>
+                    <ul class="c3a-criteria-list">
+                        ${criteriaList}
+                    </ul>
+                </details>
+            `;
+        }).join('');
+
+        const totalCls = scores.total >= 75 ? 'high' : scores.total >= 50 ? 'medium' : 'low';
+
+        return `
+            <div class="c3a-block">
+                <div class="c3a-block-header">
+                    <h4 class="c3a-block-title">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        BSI C3A v1.0 — Operationalisierung
+                    </h4>
+                    <div class="c3a-block-total c3a-block-total-${totalCls}">
+                        <span class="c3a-block-total-label">Gesamt</span>
+                        <span class="c3a-block-total-value">${scores.total}</span>
+                        <span class="c3a-block-total-of">/ 100</span>
+                    </div>
+                </div>
+                <div class="c3a-block-groups">
+                    ${groupBlocks}
+                </div>
+                <p class="c3a-block-hint">
+                    <i class="fa-solid fa-info-circle"></i>
+                    Aggregation: <strong>pass</strong> = 100, <strong>partial</strong> = 50, <strong>fail/unknown</strong> = 0; gemittelt je SOV-Kategorie.
+                </p>
+            </div>
+        `;
+    }
+
+    /**
+     * Erzeugt den Quellen-Block je Provider
+     */
+    buildSourcesBlock(sources) {
+        if (!sources || sources.length === 0) return '';
+        const items = sources.map(s => `
+            <li class="provider-source-item">
+                <i class="fa-solid fa-link"></i>
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title}</a>
+            </li>
+        `).join('');
+        return `
+            <div class="provider-sources-block">
+                <h4 class="provider-sources-title">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    Quellen
+                </h4>
+                <ul class="provider-sources-list">
+                    ${items}
+                </ul>
+            </div>
+        `;
     }
 
     /**

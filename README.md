@@ -1,44 +1,48 @@
 # Sovereign Cloud Compass (SCC)
 
-Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend auf der Balance zwischen Kontrolle/Souveränität und Leistungsfähigkeit.
+Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend auf der Balance zwischen Kontrolle/Souveränität und Leistungsfähigkeit. Ab v4.0.0 vollständig auditierbar gemäß **BSI C3A v1.0** (*Criteria enabling Cloud Computing Autonomy*, 27.04.2026) und dem **EU Cloud Sovereignty Framework**.
 
 ## Highlights
 
-- **EU SEAL-Integration**: Souveränitätsbewertung nach EU Cloud Sovereignty Framework (SEAL-0 bis SEAL-4)
-- **SOV-Kriterien**: 8 Souveränitätsziele (SOV-1 bis SOV-8) mit EU-konformer Gewichtung
+- **BSI C3A v1.0 Operationalisierung**: ~30 prüfbare Einzelkriterien aus SOV-1…6 mit pass/partial/fail/unknown-Bewertung pro Provider, inklusive C1/C2-Varianten (EU vs. Deutschland)
+- **SOV-7 Compliance-Katalog**: 10 prüfbare Sicherheitskriterien (ISO 27001/17/18/27701, BSI C5/IT-Grundschutz, SOC 2 Type 2, KRITIS, NIS2, EU-/DE-SOC), die die SOV-7-Lücke des BSI-C3A-Mandats schließen
+- **Audit-Strenge-Toggle**: Wechsel zwischen **EU (C1)** und **Deutschland (C2)** mit BSI-konformer Score-Anpassung — optimal für KRITIS- und Bundesausschreibungen
+- **EU SEAL-Integration**: Souveränitätsbewertung nach EU Cloud Sovereignty Framework (SEAL-0 bis SEAL-4) mit EU-konformer Gewichtung der SOV-1…8
+- **Pro-Provider-Quellenbelege**: Belastbare URL-Quellen je Provider (Compliance-Seiten, Pressemitteilungen, Zertifikate)
+- **Spider-Chart-Hover** auf Matrix-Punkten: Sofort sichtbare 6-Speichen-Visualisierung der C3A-Werte
+- **Sov-Detail-Panel** mit konsolidierter Drilldown-Liste (8 SOV-Reihen ausklappbar mit Einzelkriterien)
 - **Strategie-Slider**: Dynamische Gewichtung zwischen Kontrolle und Leistung
-- **Matrix-Visualisierung**: Intuitive Darstellung aller Cloud-Anbieter mit SEAL-Zonen
-- **SOV-Detail-Panel**: Detaillierte Aufschlüsselung der Souveränitätsbewertung pro Provider
-- **Kategorie-Filter**: Filterung nach Hyperscaler, Souveräne Clouds, EU-Anbieter, Private Cloud und Hybrid-Lösungen
-- **Transparente Bewertung**: Detaillierte Dokumentation der Bewertungskriterien und Scoring-Methodik
-- **Public & Full Access Modus**: Anonymisierte Ansicht für öffentliche Nutzung oder Vollzugriff mit Anbieter-Namen
+- **Matrix-Visualisierung**: 2D-Darstellung mit SEAL-Zonen als Hintergrund-Bändern
+- **Kategorie-Filter**: Hyperscaler / Souveräne Clouds / EU-Anbieter / Private / Hybrid
+- **Public & Full Access Modus**: Anonymisierte Ansicht oder Vollzugriff mit Anbieter-Namen
 - **Editierbare Scores**: Bewertungen können individuell angepasst werden
-- **Responsive Design**: Optimiert für Desktop, Tablet und Mobile mit Burger-Menü
-- **Dark Mode**: Vollständige Unterstützung für helle und dunkle Darstellung
+- **Responsive Design** & **Dark Mode**: Optimiert für Desktop, Tablet und Mobile
 
-## Unterstützte Cloud-Anbieter
+## Unterstützte Cloud-Anbieter (16)
 
-### Hyperscaler
+### Hyperscaler (4)
 - Amazon Web Services (AWS)
 - Microsoft Azure
 - Google Cloud Platform (GCP)
 - Oracle Cloud
 
-### Souveräne Clouds
-- AWS European Sovereign Cloud (ESC)
-- Microsoft DELOS Cloud
+### Souveräne Clouds (3)
+- AWS European Sovereign Cloud (ESC) — GA seit Januar 2026, RZ Brandenburg
+- Microsoft DELOS Cloud — Treuhänder-Modell mit SAP/Arvato für deutsche Verwaltung
+- Oracle EU Sovereign Cloud — GA seit 2023, RZ Frankfurt + Madrid
 
-### EU-Anbieter
-- STACKIT (Schwarz IT)
+### EU-Anbieter (4)
+- STACKIT (Schwarz Gruppe)
 - IONOS Cloud (United Internet)
 - T Cloud Public (Deutsche Telekom, ehem. Open Telekom Cloud)
+- SAP Cloud Infrastructure (SAP SE, RZ Walldorf/St. Leon-Rot)
 
-### Private Cloud
+### Private Cloud (2)
 - OpenStack Private Cloud
 - VMware Private Cloud
 
-### Hybrid-Lösungen
-- Google Dedicated Cloud
+### Hybrid-Lösungen (3)
+- Google Dedicated Cloud (Treuhänder-Modell)
 - Azure Stack HCI
 - AWS Outpost
 
@@ -117,19 +121,33 @@ Ein interaktives Tool zur Bewertung und Auswahl von Cloud-Anbietern basierend au
 ### Dateistruktur
 ```
 SCC/
-├── index.html                        # Haupt-HTML (Compass)
-├── evaluation-criteria.html          # Bewertungskriterien-Seite
-├── styles.css                        # Haupt-Styling
+├── index.html                        # Haupt-HTML (Compass mit Audit-Toggle)
+├── evaluation-criteria.html          # Bewertungskriterien & Methodik-Seite
+├── styles.css                        # Haupt-Styling (~4.200 Zeilen)
+├── criteria-styles.css               # Zusätzliche Styles für Kriterien-Seite
 ├── js/
-│   ├── scc-compass.js                # Haupt-Logik (Compass)
+│   ├── scc-compass.js                # UI-Controller (Sov-Panel, Hover-Popup, Toggle)
 │   ├── data/
-│   │   └── providers.js              # Provider-Daten, SOV-Scores, SEAL-Konfiguration
-│   └── components/
-│       └── chart.js                  # Matrix-Visualisierung mit SEAL-Zonen
+│   │   ├── sov-framework.js          # EU CSF: SEAL-Levels, SOV-1…8, Gewichte
+│   │   ├── c3a-framework.js          # BSI C3A v1.0: 30 Kriterien + aggregateC3A
+│   │   ├── sov7-compliance.js        # SOV-7 Compliance-Katalog (10 Kriterien)
+│   │   ├── providers-base.js         # Provider-Stammdaten & Kategorien
+│   │   ├── provider-assessments.js   # Pro Provider: C3A, SOV-7, SOV-8, Quellen
+│   │   └── providers.js              # Aggregator (window.SCC_DATA)
+│   ├── components/
+│   │   └── chart.js                  # Matrix-Visualisierung mit SEAL-Zonen
+│   └── core/
+│       ├── auth.js                   # Login (SHA-256)
+│       ├── storage.js                # LocalStorage-Wrapper
+│       ├── theme.js                  # Dark Mode
+│       ├── mobile-nav.js             # Mobile Navigation
+│       └── utils.js                  # Hilfsfunktionen
 ├── scc-criteria-page.js              # Bewertungskriterien-Logik
+├── docs/superpowers/plans/           # Plan-Dokumente (v4 C3A, v4 Hybrid Control)
 ├── favicon.svg                       # Favicon
-├── btc-logo.png                      # BTC AG Logo
-├── LICENSE                           # Lizenz
+├── btc-logo.png / btc-logo-white.png # BTC AG Logo
+├── og-image.png                      # OpenGraph Bild
+├── LICENSE                           # Dual-License (AGPL v3 / kommerziell)
 ├── CHANGELOG.md                      # Änderungsprotokoll
 └── README.md                         # Diese Datei
 ```
@@ -144,51 +162,50 @@ SCC/
 
 ## Bewertungsmethodik
 
-### Berechnungsformel
+Ab v4.0.0 erfolgt die Bewertung in **vier Aggregations-Stufen**:
+
+### Stufe 1 — Einzelkriterium
+Jedes der ~30 BSI-C3A-Kriterien und der 10 SOV-7-Compliance-Kriterien wird mit `pass` (100), `partial` (50), `fail` (0) oder `unknown` (0) bewertet. Pro Bewertung wird eine textliche Begründung und (wo zutreffend) die Variante (C1 / C2 / C3 / C4) hinterlegt.
+
+### Stufe 2 — SOV-Score
+Der Score je SOV-Kategorie ist der **arithmetische Mittelwert** aller zugehörigen Kriterien.
+
+### Stufe 3 — Kontrolle und C3A-Total
+- **C3A-Total** (BSI-Methodik) = ungewichteter Mittelwert über die **6 SOV-Buckets** SOV-1…6
+- **Kontrolle** (EU-CSF-Methodik) = gewichteter Mittelwert über alle **8 SOV-Dimensionen**:
+
+| SOV | Kriterium | Gewicht | Datenquelle |
+|-----|-----------|---------|-------------|
+| SOV-1 | Strategische Souveränität | 15% | BSI C3A (4 Kriterien) |
+| SOV-2 | Rechtliche Souveränität | 10% | BSI C3A (3 Kriterien) |
+| SOV-3 | Daten- & KI-Souveränität | 10% | BSI C3A (5 Kriterien) |
+| SOV-4 | Operative Souveränität | 15% | BSI C3A (10 Kriterien) |
+| SOV-5 | Lieferketten-Souveränität | 20% | BSI C3A (5 Kriterien) |
+| SOV-6 | Technologie-Souveränität | 15% | BSI C3A (3 Kriterien) |
+| SOV-7 | Sicherheits-Souveränität | 10% | SCC SOV-7 Katalog (10 Kriterien) |
+| SOV-8 | Ökologische Nachhaltigkeit | 5% | Experten-Wert |
+
+### Stufe 4 — Gesamt-Score
 ```
-Gesamt-Score = (Kontrolle × Gewicht_Kontrolle) + (Leistung × Gewicht_Leistung)
+Gesamt = Kontrolle × (1 - s) + Leistung × s        (s = Slider-Wert 0…1)
 ```
 
-### Gewichtungsbeispiele
-- **Maximale Souveränität**: 90% Kontrolle, 10% Leistung
-- **Ausgewogen**: 50% Kontrolle, 50% Leistung
-- **Performance First**: 10% Kontrolle, 90% Leistung
+### Audit-Strenge C1 / C2 (BSI-konform)
+Im **DE-Modus (C2)** werden Kriterien, die nur die EU-Variante (C1) erfüllen, auf 50 Punkte reduziert. Damit lässt sich die Strenge für KRITIS- oder Bundesausschreibungen anpassen, ohne die Datenbasis zu duplizieren.
 
-### Bewertungskriterien
-
-**Kontrolle & Souveränität (0-100 Punkte)**
-
-Basierend auf dem [EU Cloud Sovereignty Framework](https://commission.europa.eu/document/09579818-64a6-4dd5-9577-446ab6219113_en) mit gewichteten SOV-Kriterien:
-
-| SOV | Kriterium | Gewicht |
-|-----|-----------|---------|
-| SOV-1 | Strategische Souveränität | 15% |
-| SOV-2 | Rechtliche Souveränität | 10% |
-| SOV-3 | Daten- & KI-Souveränität | 10% |
-| SOV-4 | Operative Souveränität | 15% |
-| SOV-5 | Lieferketten-Souveränität | 20% |
-| SOV-6 | Technologie-Souveränität | 15% |
-| SOV-7 | Sicherheits-Souveränität | 10% |
-| SOV-8 | Ökologische Nachhaltigkeit | 5% |
-
-**Leistung & Performance (0-100 Punkte)**
-- Service-Portfolio Umfang
-- Service-Reife (Maturity)
-- Skalierbarkeit & Verfügbarkeit
-- Innovation & KI/ML
-- Ökosystem & Integration
-- Performance & Latenz
+### Leistung & Performance (0–100 Punkte)
+Service-Portfolio · Service-Reife · Skalierbarkeit & Verfügbarkeit · Innovation & KI/ML · Ökosystem · Performance & Latenz
 
 ## Datenquellen
 
 Die Bewertungen basieren auf:
-- Umfassenden Experten-Einschätzungen der BTC AG (10+ Jahre Cloud-Erfahrung)
-- Sovereign Cloud Benchmark 2025 von cloud ahead
-- Öffentlich verfügbaren Dokumentationen der Cloud-Anbieter
-- Eigenen Recherchen und Praxiserfahrungen
-- Stand: Januar 2026
+- **BSI C3A v1.0** (27.04.2026) — 30 prüfbare Kriterien je Provider
+- **EU Cloud Sovereignty Framework** — Referenz-Dokument der EU-Kommission
+- **Öffentliche Provider-Quellen** — Compliance-Seiten, Pressemitteilungen, Zertifikate (URL-belegt je Provider)
+- **Experten-Einschätzungen der BTC AG** (10+ Jahre Cloud-Erfahrung) für SOV-8 (Nachhaltigkeit) und Leistungs-Bewertung
+- Stand: April 2026
 
-**Hinweis**: Die Bewertungen sind Experteneinschätzungen und können individuell in der Kriterien-Seite angepasst werden.
+**Hinweis**: Die Bewertungen sind transparent dokumentiert und können in der Methodik-Seite eingesehen werden. SOV-1…7 sind audit-tauglich aus den prüfbaren Kriterien aggregiert; SOV-8 bleibt eine Experten-Einschätzung, da SOV-8 nicht im BSI-Mandat liegt.
 
 ## Erweiterung
 
