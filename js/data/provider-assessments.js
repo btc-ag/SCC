@@ -8,7 +8,7 @@
  *   - sources:         [{title, url, retrieved?}], 2-5 belastbare Belegstellen
  *
  * Bewertungs-Status: 'pass' | 'partial' | 'fail' | 'unknown'
- * Stand: 2026-04-27 (mit C3A v1.0 vom 27.04.2026)
+ * Stand: 2026-07-02 (SAP CI: VS-NfD-Einsatzerlaubnis; C3A v1.0 vom 27.04.2026)
  *
  * @fileoverview Provider-spezifische Bewertungen
  * @module data/provider-assessments
@@ -686,16 +686,16 @@
                 'SOV-7-07': r('pass', 'SOC 1 Type 2 + SOC 2 Type 2'),
                 'SOV-7-08': r('pass', 'KRITIS/NIS2, Schutzziel HOCH (lt. SAP)'),
                 'SOV-7-09': r('pass', 'KRITIS/NIS2-konform'),
-                'SOV-7-10': r('partial', 'BSI-zugelassene VS-NfD-Hardware verbaut, Plattform-VS-NfD-Zulassung in Bearbeitung')
+                'SOV-7-10': r('pass', 'BSI VS-NfD-Einsatzerlaubnis (Komponentenzulassung) erteilt Juni 2026; EU-/DE-SOC')
             },
             sovExplanations: {
                 sov1: 'SAP SE, Walldorf – börsennotiert, kein Staatsanteil',
                 sov2: 'Deutsches Recht, kein US-Konzern, kein CLOUD Act',
-                sov3: 'Deutsche Rechenzentren, VS-NfD-fähig – BYOK nicht bestätigt',
+                sov3: 'Deutsche Rechenzentren, VS-NfD-zugelassen (BSI) – BYOK nicht bestätigt',
                 sov4: 'VS-NfD-Personal, OpenStack-Exit möglich – kein Self-Service, kein öffentlicher Katalog',
                 sov5: 'SAP-eigene RZs und Leitungen, OpenStack-Basis – keine öffentlichen SBOMs',
                 sov6: 'OpenStack, API-first – Katalog/Preisliste nicht öffentlich, Lock-in nicht verifizierbar',
-                sov7: 'ISO 27001 auf Basis IT-Grundschutz (April 2026), C5 Typ II, SOC 1/2 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3 – VS-NfD in Bearbeitung',
+                sov7: 'ISO 27001 auf Basis IT-Grundschutz (April 2026), C5 Typ II, SOC 1/2 Typ II, KRITIS, Schutzziel HOCH, EN 50600 VK3, VS-NfD-Einsatzerlaubnis (BSI, Juni 2026)',
                 sov8: 'Eigene RZs in Deutschland, Nachhaltigkeitsstrategie als DAX-Konzern'
             },
             c3a: {
@@ -731,6 +731,7 @@
                 'SOV-6-03': r('pass')
             },
             sources: [
+                { title: 'SAP News – VS-NfD-Einsatzerlaubnis für SAP Cloud Infrastructure (BSI-Komponentenzulassung; inkl. C3A-Selbstbewertung) (Juni 2026)', url: 'https://news.sap.com/germany/2026/06/sap-erhaelt-vs-nfd-einsatzerlaubnis-fuer-die-sap-cloud-infrastructure/' },
                 { title: 'SAP News – Cloud Infrastructure IT-Grundschutz Zertifizierung (April 2026)', url: 'https://news.sap.com/germany/2026/04/sap-cloud-infrastructure-rechenzentren-deutschland-it-grundschutz-zertifizierung/' },
                 { title: 'SAP Trust Center – Zertifizierungen und Compliance', url: 'https://www.sap.com/germany/about/trust-center/certification-compliance.html' },
                 { title: 'SAP News (EN) – IT-Grundschutz Certification', url: 'https://news.sap.com/2026/04/sap-cloud-infrastructure-it-grundschutz-certification-data-centers-germany/' }

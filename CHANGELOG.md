@@ -5,6 +5,13 @@ All notable changes to the Sovereign Cloud Compass project will be documented in
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1] - 2026-07-02
+
+### Changed — Provider-Daten
+- **SAP Cloud Infrastructure:** `SOV-7-10 (EU-SOC / VS-NfD)` von `partial` auf `pass` — BSI hat die **VS-NfD-Einsatzerlaubnis** (Komponentenzulassung) für die SAP Cloud Infrastructure erteilt (Juni 2026). Vorher „Plattform-VS-NfD-Zulassung in Bearbeitung". Dadurch steigt der SOV-7-Score (Sicherheit & Compliance) von 75 auf 80.
+- SOV-Erklärungen `sov3`/`sov7` entsprechend aktualisiert (VS-NfD „in Bearbeitung" → „erteilt"), neue Quelle (SAP News Juni 2026) ergänzt.
+- SAPs **C3A-Selbstbewertung** ist als Quelle/Kontext vermerkt; einzelne C3A-Kriterien (SOV-1…6) bleiben unverändert, da für die offenen Punkte (SBOM/Lieferkette, Quellcode-Backup, BYOK) weiterhin nur eine Eigenauskunft und kein unabhängiger Beleg vorliegt.
+
 ## [4.0.0] - 2026-04-27
 
 Diese Major-Release stellt den Sovereign Cloud Compass auf eine vollständig **auditierbare**
